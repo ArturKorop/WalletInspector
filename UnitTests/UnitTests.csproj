@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Common\TestHellper.cs" />
     <Compile Include="DomainTests\DateItemsTests\AllTimeTests.cs" />
+    <Compile Include="DomainTests\DateItemsTests\MonthTests.cs" />
+    <Compile Include="DomainTests\DateItemsTests\YearTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
