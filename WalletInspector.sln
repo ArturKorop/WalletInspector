@@ -1,8 +1,45 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{D854EAC9-5AD0-40D9-A15F-FC0EB73E8B65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{08344588-0543-4849-B903-0CA85BF9F8A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{56CCEBDA-E63E-4740-B967-4145D993D27E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A85FD574-51BD-45C8-8856-AC865C71005B}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+		WalletInspector.vsmdi = WalletInspector.vsmdi
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WalletInspector.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D854EAC9-5AD0-40D9-A15F-FC0EB73E8B65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D854EAC9-5AD0-40D9-A15F-FC0EB73E8B65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D854EAC9-5AD0-40D9-A15F-FC0EB73E8B65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D854EAC9-5AD0-40D9-A15F-FC0EB73E8B65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08344588-0543-4849-B903-0CA85BF9F8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08344588-0543-4849-B903-0CA85BF9F8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08344588-0543-4849-B903-0CA85BF9F8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08344588-0543-4849-B903-0CA85BF9F8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56CCEBDA-E63E-4740-B967-4145D993D27E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56CCEBDA-E63E-4740-B967-4145D993D27E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56CCEBDA-E63E-4740-B967-4145D993D27E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56CCEBDA-E63E-4740-B967-4145D993D27E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
 	EndGlobalSection
 EndGlobal
