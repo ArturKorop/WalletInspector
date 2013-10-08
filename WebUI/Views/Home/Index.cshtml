@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model Domain.Code.DatabaseItems.CostItemForDataBase
 
 @{
     Layout = null;
@@ -12,7 +12,23 @@
     </head>
     <body>
         <div>
-              
+            <div>
+                <span>Item</span>
+                @using (@Html.BeginForm("AddItem", "Home"))
+                {
+                    <div id="search">
+                        <div id="searchbtn">
+                            <input id="Search" type="submit" value="Search" />
+                        </div>
+                        <div id="searchtxt">
+                            @Html.TextBox("Name")
+                        </div>
+                        <div id="searchtxt">
+                            @Html.TextBox("Price")
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </body>
 </html>

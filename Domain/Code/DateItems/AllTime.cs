@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.Code.DatabaseItems;
 using Domain.Code.Factories;
-using Domain.Code.Main;
 
 namespace Domain.Code.DateItems
 {
@@ -36,7 +36,17 @@ namespace Domain.Code.DateItems
         public Year GetYear(int yearName)
         {
             var year = Years.SingleOrDefault(x => x.Name == yearName) ?? new Year(yearName);
+
             return year;
+        }
+
+        public Day GetDay(int year, int month, int day)
+        {
+            var yearTemp = Years.SingleOrDefault(x => x.Name == year) ?? new Year(year);
+            var monthTemp = yearTemp.GetMonth(month);
+            var dayTemp = monthTemp.GetDay(day);
+
+            return dayTemp;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Domain.Code.DatabaseItems;
 using Domain.Code.DateItems;
-using Domain.Code.Main;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitTests.Common;
 
@@ -18,7 +18,7 @@ namespace UnitTests.DomainTests.DateItemsTests
 
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         [TestMethod]
-        public void WrongDateMonth13Test()
+        public void WrongDateDay0Test()
         {
             var target = new AllTime(new List<CostItemForDataBase>());
             target.GetYear(2013).GetMonth(1).GetDay(0);
@@ -26,7 +26,7 @@ namespace UnitTests.DomainTests.DateItemsTests
 
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         [TestMethod]
-        public void WrongDateMonth0Test()
+        public void WrongDateDay32Test()
         {
             var target = new AllTime(new List<CostItemForDataBase>());
             target.GetYear(2013).GetMonth(1).GetDay(32);

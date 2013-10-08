@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Domain.Code.Common;
-using Domain.Code.Main;
+using Domain.Code.DatabaseItems;
+using Domain.Code.DateItems;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
 
