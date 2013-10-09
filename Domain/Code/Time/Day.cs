@@ -22,19 +22,19 @@ namespace Domain.Code.Time
             CostItems = new List<CostItem>();
         }
 
-        public void Add(CostItem costItemForDataBase)
+        public void Add(CostItem costItem)
         {
-            CostItems.Add(costItemForDataBase);
+            CostItems.Add(costItem);
         }
 
-        public void Remove(CostItem costItemForDataBase)
+        public void Remove(CostItem costItem)
         {
-            CostItems.Remove(costItemForDataBase);
+            CostItems.Remove(costItem);
         }
 
-        public void Remove(string name, int price)
+        public void Remove(int id)
         {
-            CostItems.Remove(CostItems.Single(x => x.Price == price && x.Name == name));
+            CostItems.Remove(CostItems.Single(x => x.Id == id));
         }
     }
 }

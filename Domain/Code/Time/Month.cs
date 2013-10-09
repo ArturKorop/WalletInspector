@@ -8,16 +8,16 @@ namespace Domain.Code.Time
     public class Month
     {
         private readonly Day[] _days;
-        private readonly int _dayInMonth;
+        private readonly int _daysInMonth;
 
         public string Name { get;private set; }
         public int MonthNumber { get;private set; }
 
         public Day GetDay(int dayNumber)
         {
-            if (dayNumber < 1 || dayNumber > _dayInMonth)
+            if (dayNumber < 1 || dayNumber > _daysInMonth)
                 throw new ArgumentOutOfRangeException("dayNumber",
-                                                      String.Format("Day number must be from 1 to {0}", _dayInMonth));
+                                                      String.Format("Day number must be from 1 to {0}", _daysInMonth));
 
             return _days[dayNumber - 1];
         }
@@ -26,9 +26,9 @@ namespace Domain.Code.Time
         {
             MonthNumber = monthNumber;
             Name = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(MonthNumber);
-            _dayInMonth = DateTime.DaysInMonth(yearName, monthNumber);
-            _days = new Day[_dayInMonth];
-            for (int i = 0; i < _dayInMonth; i++)
+            _daysInMonth = DateTime.DaysInMonth(yearName, monthNumber);
+            _days = new Day[_daysInMonth];
+            for (int i = 0; i < _daysInMonth; i++)
             {
                 _days[i] = new Day(new DateTime(yearName, monthNumber, i + 1));
             }

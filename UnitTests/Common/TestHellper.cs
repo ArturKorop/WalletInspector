@@ -10,11 +10,11 @@ namespace UnitTests.Common
         public static void CreateTagRepository()
         {
             var mockTagRepository = new Mock<ITagRepository>();
-            mockTagRepository.Setup(x => x.GetTag(1)).Returns("Eat");
-            mockTagRepository.Setup(x => x.GetTag(2)).Returns("Sport");
-            mockTagRepository.Setup(x => x.GetTag(3)).Returns("Entertainment");
-            mockTagRepository.Setup(x => x.GetTag(4)).Returns("Novus");
-            mockTagRepository.Setup(x => x.GetTag(It.IsInRange(5, 1000, Range.Exclusive))).Returns("Empty tag");
+            mockTagRepository.Setup(x => x.GetTagName(1)).Returns("Eat");
+            mockTagRepository.Setup(x => x.GetTagName(2)).Returns("Sport");
+            mockTagRepository.Setup(x => x.GetTagName(3)).Returns("Entertainment");
+            mockTagRepository.Setup(x => x.GetTagName(4)).Returns("Novus");
+            mockTagRepository.Setup(x => x.GetTagName(It.IsInRange(5, 1000, Range.Exclusive))).Returns("Empty tag");
 
             DIServiceLocator.Current.RegisterInstance(mockTagRepository.Object);
         }

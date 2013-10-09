@@ -32,6 +32,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Home|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Home\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework.Extended">
@@ -54,9 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\TestHellper.cs" />
-    <Compile Include="DomainTests\DateItemsTests\AllTimeTests.cs" />
-    <Compile Include="DomainTests\DateItemsTests\MonthTests.cs" />
-    <Compile Include="DomainTests\DateItemsTests\YearTests.cs" />
+    <Compile Include="DomainTests\TimeTests\AllTimeTests.cs" />
+    <Compile Include="DomainTests\TimeTests\DayTests.cs" />
+    <Compile Include="DomainTests\TimeTests\MonthTests.cs" />
+    <Compile Include="DomainTests\TimeTests\YearTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

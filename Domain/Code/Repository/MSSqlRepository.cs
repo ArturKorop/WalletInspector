@@ -23,13 +23,14 @@ namespace Domain.Code.Repository
         public List<CostItem> GetItems()
         {
             var costItems = new List<CostItem>(_context.CostItems.Select(x=>x));
-            Parallel.ForEach(costItems, costItem => costItem.SetTagNames(_tagRepository));
+            Parallel.ForEach(costItems, costItem => costItem.SetTagNames());
 
             return costItems;
         }
 
         public void Add(CostItem item)
         {
+            item.SetTagIds();
             _context.CostItems.Add(item);
             _context.SaveChanges();
         }

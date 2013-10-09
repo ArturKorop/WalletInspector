@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain.Code.DatabaseItems;
 using Domain.Code.General;
 using Domain.Code.Time;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitTests.Common;
 
-namespace UnitTests.DomainTests.DateItemsTests
+namespace UnitTests.DomainTests.TimeTests
 {
     [TestClass]
     public class YearTests
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context)
-        {
-            TestHellper.CreateTagRepository();
-        }
-
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         [TestMethod]
         public void WrongDateMonth13Test()

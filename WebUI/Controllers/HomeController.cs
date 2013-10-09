@@ -20,20 +20,13 @@ namespace WebUI.Controllers
             return View();
         }
 
-        [HttpGet]
+        
         public ActionResult AddItem(CostItem item)
         {
-            var tempItem = new CostItem
-                {
-                    Name =  item.Name,
-                    Price = item.Price,
-                    Date = DateTime.Now,
-                    TagsIds = item.TagsIds,
-                    UserId = 1
-                };
-
+            item.Date = DateTime.Now;
+            item.UserId = 1;
             var repository = new MsSqlRepository();
-            repository.Add(tempItem);
+            repository.Add(item);
 
             return View("Index");
         }
