@@ -66,17 +66,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Common\DIServiceLocator.cs" />
-    <Compile Include="Code\DatabaseItems\Contexts\WalletInspectorContext.cs" />
-    <Compile Include="Code\DateItems\AllTime.cs" />
-    <Compile Include="Code\DateItems\Day.cs" />
-    <Compile Include="Code\DateItems\Month.cs" />
-    <Compile Include="Code\DateItems\Week.cs" />
-    <Compile Include="Code\DateItems\Year.cs" />
-    <Compile Include="Code\Factories\CostItemFactory.cs" />
-    <Compile Include="Code\DateItems\CostItem.cs" />
-    <Compile Include="Code\DatabaseItems\CostItemForDataBase.cs" />
-    <Compile Include="Code\DatabaseItems\Tag.cs" />
-    <Compile Include="Code\Repository\MSSqlRepository.cs" />
+    <Compile Include="Code\DatabaseItems\WalletInspectorContext.cs" />
+    <Compile Include="Code\Time\AllTime.cs" />
+    <Compile Include="Code\Time\Day.cs" />
+    <Compile Include="Code\Time\Month.cs" />
+    <Compile Include="Code\Time\Week.cs" />
+    <Compile Include="Code\Time\Year.cs" />
+    <Compile Include="Code\General\CostItem.cs" />
+    <Compile Include="Code\General\Tag.cs" />
+    <Compile Include="Code\Repository\MsSqlRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ITagRepository.cs" />
     <Compile Include="Interfaces\IWallet.cs" />

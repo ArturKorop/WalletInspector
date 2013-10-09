@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Code.DatabaseItems;
-using Domain.Code.DatabaseItems.Contexts;
-using Domain.Code.DateItems;
+using Domain.Code.General;
 using Domain.Code.Repository;
 using Domain.Interfaces;
 
@@ -15,24 +14,28 @@ namespace WebUI.Controllers
     {
         public ActionResult Index()
         {
-            var repository = new MSSqlRepository();
+            var repository = new MsSqlRepository();
             var temp = repository.GetItems();
+
             return View();
         }
 
-        public void AddItem(string name, int price)
+        [HttpGet]
+        public ActionResult AddItem(CostItem item)
         {
-            var item = new CostItemForDataBase
+            var tempItem = new CostItem
                 {
-                    Name =  name,
-                    Price = price,
+                    Name =  item.Name,
+                    Price = item.Price,
                     Date = DateTime.Now,
-                    Tags = new List<int> { 1 },
+                    TagsIds = item.TagsIds,
                     UserId = 1
                 };
 
-            var repository = new MSSqlRepository();
-            repository.Add(item);
+            var repository = new MsSqlRepository();
+            repository.Add(tempItem);
+
+            return View("Index");
         }
 
     }

@@ -1,0 +1,12 @@
+﻿using System.Data.Entity;
+using Domain.Code.General;
+using Domain.Interfaces;
+
+namespace Domain.Code.DatabaseItems
+{
+    public class WalletInspectorContext : DbContext
+    {
+        public DbSet<CostItem> CostItems { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+    }
+}

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Domain.Code.DatabaseItems;
+using Domain.Code.General;
 
-namespace Domain.Code.DateItems
+namespace Domain.Code.Time
 {
     public class Day
     {

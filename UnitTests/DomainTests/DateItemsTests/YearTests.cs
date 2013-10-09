@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Code.DatabaseItems;
-using Domain.Code.DateItems;
+using Domain.Code.General;
+using Domain.Code.Time;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitTests.Common;
 
@@ -20,7 +21,7 @@ namespace UnitTests.DomainTests.DateItemsTests
         [TestMethod]
         public void WrongDateMonth13Test()
         {
-            var target = new AllTime(new List<CostItemForDataBase>());
+            var target = new AllTime(new List<CostItem>());
             target.GetYear(2013).GetMonth(13);
         }
 
@@ -28,7 +29,7 @@ namespace UnitTests.DomainTests.DateItemsTests
         [TestMethod]
         public void WrongDateMonth0Test()
         {
-            var target = new AllTime(new List<CostItemForDataBase>());
+            var target = new AllTime(new List<CostItem>());
             target.GetYear(2013).GetMonth(0);
         }
     }

@@ -1,4 +1,4 @@
-﻿@model Domain.Code.DatabaseItems.CostItemForDataBase
+﻿@model Domain.Code.General.CostItem
 
 @{
     Layout = null;
@@ -16,17 +16,24 @@
                 <span>Item</span>
                 @using (@Html.BeginForm("AddItem", "Home"))
                 {
-                    <div id="search">
-                        <div id="searchbtn">
-                            <input id="Search" type="submit" value="Search" />
-                        </div>
-                        <div id="searchtxt">
-                            @Html.TextBox("Name")
-                        </div>
-                        <div id="searchtxt">
-                            @Html.TextBox("Price")
-                        </div>
-                    </div>
+                    <table>
+                    	<tr>
+                    		<td>Name</td>
+                    		<td>@Html.TextBoxFor(m=>m.Name)</td>
+                    	</tr>
+                    	<tr>
+                    		<td>Price</td>
+                    		<td>@Html.TextBoxFor(m=>m.Price)</td>
+                    	</tr>
+                    	<tr>
+                    		<td>Tags</td>
+                    		<td>@Html.TextBoxFor(m=>m.TagNames)</td>
+                    	</tr>
+                    	<tr>
+                    		<td></td>
+                    		<td><input type="submit" value="Отправить" /></td>
+                    	</tr>
+                    </table>
                 }
             </div>
         </div>

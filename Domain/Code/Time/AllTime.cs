@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Domain.Code.DatabaseItems;
-using Domain.Code.Factories;
+using Domain.Code.General;
 
-namespace Domain.Code.DateItems
+namespace Domain.Code.Time
 {
     public class AllTime
     {
@@ -15,10 +14,9 @@ namespace Domain.Code.DateItems
             Years = new List<Year>();
         }
 
-        public AllTime(IEnumerable<CostItemForDataBase> costItems)
+        public AllTime(IEnumerable<CostItem> costItems)
         {
             Years = new List<Year>();
-            var factory = new CostItemFactory();
             foreach (var items in costItems)
             {
                 var year = items.Date.Year;
@@ -29,7 +27,7 @@ namespace Domain.Code.DateItems
                     Years.Add(tempYear);
                 }
 
-                tempYear.AddCostItem(factory.CreateCostItem(items), items.Date);
+                tempYear.AddCostItem(items, items.Date);
             }
         }
 

@@ -1,28 +1,37 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Domain.Code.Common;
 using Domain.Code.DatabaseItems;
-using Domain.Code.DatabaseItems.Contexts;
+using Domain.Code.General;
 using Domain.Interfaces;
+using Microsoft.Practices.Unity;
 
 namespace Domain.Code.Repository
 {
-    public class MSSqlRepository : IRepository
+    public class MsSqlRepository : IRepository
     {
         private readonly WalletInspectorContext _context;
+        private readonly ITagRepository _tagRepository;
 
-        public MSSqlRepository()
+        public MsSqlRepository()
         {
             _context = new WalletInspectorContext();
+            _tagRepository = DIServiceLocator.Current.Resolve<ITagRepository>();
         }
 
-        public List<CostItemForDataBase> GetItems()
+        public List<CostItem> GetItems()
         {
-            return new List<CostItemForDataBase>(_context.CostItems.Select(x=>x));
+            var costItems = new List<CostItem>(_context.CostItems.Select(x=>x));
+            Parallel.ForEach(costItems, costItem => costItem.SetTagNames(_tagRepository));
+
+            return costItems;
         }
 
-        public void Add(CostItemForDataBase item)
+        public void Add(CostItem item)
         {
             _context.CostItems.Add(item);
+            _context.SaveChanges();
         }
 
         public List<Tag> GetTags()
@@ -33,6 +42,7 @@ namespace Domain.Code.Repository
         public void Add(Tag tag)
         {
             _context.Tags.Add(tag);
+            _context.SaveChanges();
         }
     }
 }

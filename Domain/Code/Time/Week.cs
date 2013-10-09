@@ -1,4 +1,4 @@
-﻿namespace Domain.Code.DateItems
+﻿namespace Domain.Code.Time
 {
     public class Week
     {

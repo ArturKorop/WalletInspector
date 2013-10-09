@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Domain.Code.DatabaseItems;
+using Domain.Code.General;
 
 namespace Domain.Interfaces
 {
     public interface IRepository
     {
-        List<CostItemForDataBase> GetItems();
+        List<CostItem> GetItems();
     }
 }
