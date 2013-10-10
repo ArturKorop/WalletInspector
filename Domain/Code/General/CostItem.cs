@@ -14,11 +14,15 @@ namespace Domain.Code.General
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public DateTime Date { get; set; }
+        [Required]
         public double Price { get; set; }
         [Column("Tags")]
         public List<int> TagIds { get; set; }
+        [Required]
         public int UserId { get; set; }
         [NotMapped]
         public List<string> TagNames { get; set; }
