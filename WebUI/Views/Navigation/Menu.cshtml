@@ -1,0 +1,23 @@
+﻿@model List<WebUI.Models.MenuLinkModels>
+@{
+    Layout = null;
+}
+
+<div id="mainMenu">
+    <div style="">
+        @foreach (var link in Model)
+        {
+            <span>
+                @Html.RouteLink(link.Name, new
+                {
+                    controller = link.Controller,
+                    action = link.Action
+                },
+                            new
+                                {
+                                    @class = link.Name == ViewBag.SelectedCategory ? "selected" : null
+                                }) 
+            </span>
+        }
+    </div>
+</div>
