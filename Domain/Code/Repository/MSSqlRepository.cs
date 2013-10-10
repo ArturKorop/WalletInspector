@@ -5,19 +5,16 @@ using Domain.Code.Common;
 using Domain.Code.DatabaseItems;
 using Domain.Code.General;
 using Domain.Interfaces;
-using Microsoft.Practices.Unity;
 
 namespace Domain.Code.Repository
 {
     public class MsSqlRepository : IRepository
     {
         private readonly WalletInspectorContext _context;
-        private readonly ITagRepository _tagRepository;
 
         public MsSqlRepository()
         {
             _context = new WalletInspectorContext();
-            _tagRepository = DIServiceLocator.Current.Resolve<ITagRepository>();
         }
 
         public List<CostItem> GetItems()
