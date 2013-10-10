@@ -14,9 +14,6 @@ namespace WebUI.Controllers
     {
         public ActionResult Index()
         {
-            var repository = new MsSqlRepository();
-            var temp = repository.GetItems();
-
             return View();
         }
 

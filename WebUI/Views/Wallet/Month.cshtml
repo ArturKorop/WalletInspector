@@ -1,0 +1,17 @@
+﻿@model Domain.Code.Time.Month
+
+<div>
+    <p>@Model.Name</p>
+    <p>@Model.MonthNumber</p> 
+    <table>
+        @foreach (var day in Model.Days)
+        {
+            <tr>
+                <td>@day.Date.Day</td>
+                <td>@day.Name</td>
+                <td>@day.CostItems.Count</td>
+                <td>@day.CostItems.Count</td>
+            </tr>
+        }
+    </table>
+</div>

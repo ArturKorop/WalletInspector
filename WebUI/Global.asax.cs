@@ -12,7 +12,7 @@ namespace WebUI
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WalletInspectorContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WalletInspectorContext>());
             AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
