@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A85FD574-51BD-45C8-8856-AC865C71005B}"
 	ProjectSection(SolutionItems) = preProject
 		Local.testsettings = Local.testsettings
+		TODO.txt = TODO.txt
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 		WalletInspector.vsmdi = WalletInspector.vsmdi
 	EndProjectSection

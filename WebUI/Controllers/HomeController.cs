@@ -23,11 +23,6 @@ namespace WebUI.Controllers
 
         public ActionResult Index()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                _repository.Add(new CostItem("Bread" + i, DateTime.Now, 4 + i));
-            }
-
             return View();
         }
         
