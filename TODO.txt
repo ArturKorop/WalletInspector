@@ -1,0 +1,7 @@
+WalletInspector TODO list:
+
+	1) Repositories:
+		XML repository
+
+	2) Time:
+		Week
