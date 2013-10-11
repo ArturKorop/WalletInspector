@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Code.DatabaseItems;
 using Domain.Code.General;
+using Domain.Code.Time;
 using Domain.Interfaces;
+using EntityFramework.Extensions;
 
 namespace Domain.Code.Repository
 {
@@ -29,20 +31,43 @@ namespace Domain.Code.Repository
             return _context.CostItems.Where(x => x.Date.Year == year).ToList();
         }
 
-        public List<CostItem> GetMontItems(int year, int month)
+        public List<CostItem> GetMonthItems(int year, int month)
         {
             return _context.CostItems.Where(x => x.Date.Year == year && x.Date.Month == month).ToList();
         }
 
-        public void Change(int id, CostItem item)
+        public Year GetYear(int year)
         {
+            var tempYear = new Year(year);
+            var items = GetYearItems(year);
+            foreach (var costItem in items)
+            {
+                tempYear.AddCostItem(costItem);
+            }
+
+            return tempYear;
+        }
+
+        public Month GetMonth(int year, int month)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Update(int id, CostItem item)
+        {
+            var tempItem = _context.CostItems.Single(x => x.Id == id);
+            tempItem.Update(item);
+            _context.SaveChanges();
+
+            /*_context.CostItems.Where(x => x.Id == id).Update(()=>{});
             _context.CostItems.Add(item);
-            RemoveItemById(id);
+            RemoveItemById(id);*/
         }
 
         public void Remove(int id)
         {
-            RemoveItemById(id);
+            _context.CostItems.Delete(x => x.Id == id);
+            _context.SaveChanges();
         }
 
         public int Add(CostItem item)
@@ -67,15 +92,9 @@ namespace Domain.Code.Repository
             _context.SaveChanges();
         }
 
-        private CostItem GetItemById(int id)
-        {
-            return _context.CostItems.Single(x => x.Id == id);
-        }
-
         private void RemoveItemById(int id)
         {
-            var itemToRemove = GetItemById(id);
-            _context.CostItems.Remove(itemToRemove);
+            _context.CostItems.Delete(x=>x.Id == id);
             _context.SaveChanges();
         }
     }

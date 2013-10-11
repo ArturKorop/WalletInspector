@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
-using Domain.Code.DatabaseItems;
 using Domain.Code.General;
 
 namespace Domain.Code.Time
@@ -44,9 +44,20 @@ namespace Domain.Code.Time
             }
         }
 
-        public void AddCostItem(CostItem item, int day)
+        public void AddCostItem(CostItem item)
         {
-            _days[day - 1].Add(item);
+            if (item.Date.Year != ThisYear || item.Date.Month != MonthNumber)
+                throw new ArgumentException("Wrong month", "item");
+
+            _days[item.Date.Day - 1].Add(item);
+        }
+
+        public void AddCostItems(IEnumerable<CostItem> items)
+        {
+            foreach (var item in items)
+            {
+                AddCostItem(item);
+            }
         }
     }
 }

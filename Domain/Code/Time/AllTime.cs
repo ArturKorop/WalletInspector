@@ -27,7 +27,7 @@ namespace Domain.Code.Time
                     Years.Add(tempYear);
                 }
 
-                tempYear.AddCostItem(items, items.Date);
+                tempYear.AddCostItem(items);
             }
         }
 
@@ -36,6 +36,13 @@ namespace Domain.Code.Time
             var year = Years.SingleOrDefault(x => x.Name == yearName) ?? new Year(yearName);
 
             return year;
+        }
+
+        public Month GetMonth(int yearName, int monthNumber)
+        {
+            var month = (Years.SingleOrDefault(x => x.Name == yearName) ?? new Year(yearName)).GetMonth(monthNumber);
+
+            return month;
         }
 
         public Day GetDay(int year, int month, int day)

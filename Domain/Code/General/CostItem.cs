@@ -69,5 +69,13 @@ namespace Domain.Code.General
         {
             return Id == other.Id;
         }
+
+        public void Update(CostItem item)
+        {
+            Name = item.Name;
+            Price = item.Price;
+            TagNames = item.TagNames;
+            TagIds = item.TagIds;
+        }
     }
 }
