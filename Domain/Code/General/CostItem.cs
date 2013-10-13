@@ -51,6 +51,7 @@ namespace Domain.Code.General
 
         public void SetTagNames()
         {
+            TagNames.Clear();
             foreach (var tagId in TagIds)
             {
                 TagNames.Add(TagRepository.GetTagName(tagId));
@@ -59,6 +60,7 @@ namespace Domain.Code.General
 
         public void SetTagIds()
         {
+            TagIds.Clear();
             foreach (var tagName in TagNames)
             {
                 TagIds.Add(TagRepository.GetTagId(tagName));
@@ -76,6 +78,7 @@ namespace Domain.Code.General
             Price = item.Price;
             TagNames = item.TagNames;
             TagIds = item.TagIds;
+            SetTagIds();
         }
     }
 }
