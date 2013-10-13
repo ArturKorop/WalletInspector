@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Domain.Code.DatabaseItems;
 using Domain.Code.General;
 using Domain.Code.Time;
@@ -18,39 +17,22 @@ namespace Domain.Code.Repository
             _context = new WalletInspectorContext();
         }
 
-        public List<CostItem> GetItems()
-        {
-            var costItems = new List<CostItem>(_context.CostItems.Select(x=>x));
-            Parallel.ForEach(costItems, costItem => costItem.SetTagNames());
-
-            return costItems;
-        }
-
-        public List<CostItem> GetYearItems(int year)
-        {
-            return _context.CostItems.Where(x => x.Date.Year == year).ToList();
-        }
-
-        public List<CostItem> GetMonthItems(int year, int month)
-        {
-            return _context.CostItems.Where(x => x.Date.Year == year && x.Date.Month == month).ToList();
-        }
-
         public Year GetYear(int year)
         {
             var tempYear = new Year(year);
             var items = GetYearItems(year);
-            foreach (var costItem in items)
-            {
-                tempYear.AddCostItem(costItem);
-            }
+            tempYear.AddCostItems(items);
 
             return tempYear;
         }
 
         public Month GetMonth(int year, int month)
         {
-            throw new System.NotImplementedException();
+            var tempMonth = new Month(year, month);
+            var items = GetMonthItems(year, month);
+            tempMonth.AddCostItems(items);
+
+            return tempMonth;
         }
 
         public void Update(int id, CostItem item)
@@ -58,10 +40,6 @@ namespace Domain.Code.Repository
             var tempItem = _context.CostItems.Single(x => x.Id == id);
             tempItem.Update(item);
             _context.SaveChanges();
-
-            /*_context.CostItems.Where(x => x.Id == id).Update(()=>{});
-            _context.CostItems.Add(item);
-            RemoveItemById(id);*/
         }
 
         public void Remove(int id)
@@ -75,15 +53,8 @@ namespace Domain.Code.Repository
             item.SetTagIds();
             _context.CostItems.Add(item);
             _context.SaveChanges();
-            var list = _context.CostItems.Select(x => x).ToList();
-            int id = list.Single(x => x.Name == item.Name && x.Date == item.Date).Id;
 
-            return id;
-        }
-
-        public List<Tag> GetTags()
-        {
-            return new List<Tag>(_context.Tags.Select(x=>x));
+            return item.Id;
         }
 
         public void Add(Tag tag)
@@ -92,10 +63,14 @@ namespace Domain.Code.Repository
             _context.SaveChanges();
         }
 
-        private void RemoveItemById(int id)
+        private IEnumerable<CostItem> GetYearItems(int year)
         {
-            _context.CostItems.Delete(x=>x.Id == id);
-            _context.SaveChanges();
+            return _context.CostItems.Where(x => x.Date.Year == year).ToList();
+        }
+
+        private IEnumerable<CostItem> GetMonthItems(int year, int month)
+        {
+            return _context.CostItems.Where(x => x.Date.Year == year && x.Date.Month == month).ToList();
         }
     }
 }
