@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Domain.Code.General;
+﻿using Domain.Code.General;
 using Domain.Code.Time;
 
 namespace Domain.Interfaces
