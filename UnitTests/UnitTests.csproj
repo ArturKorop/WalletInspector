@@ -62,7 +62,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\TestHellper.cs" />
+    <Compile Include="Common\TestHelper.cs" />
+    <Compile Include="DomainTests\GeneralTests\CostIItemsTests.cs" />
     <Compile Include="DomainTests\TimeTests\AllTimeTests.cs" />
     <Compile Include="DomainTests\TimeTests\DayTests.cs" />
     <Compile Include="DomainTests\TimeTests\MonthTests.cs" />

@@ -13,7 +13,7 @@ namespace UnitTests.DomainTests.TimeTests
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            TestHellper.CreateTagRepository();
+            TestHelper.CreateTagRepository();
         }
 
         [ExpectedException(typeof (ArgumentOutOfRangeException))]

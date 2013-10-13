@@ -12,7 +12,7 @@ namespace UnitTests.DomainTests.TimeTests
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            TestHellper.CreateTagRepository();
+            TestHelper.CreateTagRepository();
         }
 
         [TestMethod]
