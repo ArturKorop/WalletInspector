@@ -7,29 +7,7 @@
     <table>
         @foreach (var day in Model.Days)
         {
-            if (day.CostItems.Count == 0)
-            {
-                Html.RenderPartial("Day", day);
-            }
-            else
-            {
-                var count = day.CostItems.Count;
-                <tr>
-                    <td rowspan="@count">@day.Date.Day</td>
-                    <td rowspan="@count">@day.Name</td>
-                    <td>@day.CostItems[0].Name</td>
-                    <td>@day.CostItems[0].Price</td>
-                </tr>
-                for (int i = 1; i < count; i++)
-                {
-                    <tr>
-                        <td>@day.CostItems[i].Name</td>
-                        <td>@day.CostItems[i].Price</td>
-                        <td><input type="submit" value="Отправить" /></td>
-                    </tr>
-                }
-
-            }
+            Html.RenderPartial("Day", day);
         }
     </table>
 </div>
