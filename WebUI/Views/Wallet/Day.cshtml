@@ -1,0 +1,49 @@
+﻿@model Domain.Code.Time.Day
+
+
+<tr>
+        @{ var count = Model.CostItems.Count; }
+        @if (count == 0)
+        {
+            using (@Html.BeginForm("AddItem", "Wallet"))
+            {
+                <td>@Model.Date.Day</td>
+                <td>@Model.Name</td>
+                <td>@Html.TextBox("Name", "")</td>
+                <td>@Html.TextBox("Price")</td>
+                <td>@Html.TextBox("TagNames")</td>
+                @Html.Hidden("Date", Model.Date)
+                <td><input type="submit" value="Add" /></td>
+            }
+        }
+        else
+        {
+            <tr>
+                <td rowspan="@count + 1">@Model.Date.Day</td>
+                <td rowspan="@count + 1">@Model.Name</td>
+                 @for (int i = 0; i < count; i++)
+                 {
+                     <tr>
+                         <td>@Model.CostItems[i].Name</td>
+                         <td>@Model.CostItems[i].Price</td>
+                         <td><input type="submit" value="Отправить" /></td>
+                     </tr>
+                 }
+            </tr>
+        }
+
+
+
+        
+                    <td>@Model.CostItems[0].Name</td>
+                    <td>@Model.CostItems[0].Price</td>
+                </tr>
+                for (int i = 1; i < count; i++)
+                {
+                    <tr>
+                        <td>@Model.CostItems[i].Name</td>
+                        <td>@Model.CostItems[i].Price</td>
+                        <td><input type="submit" value="Отправить" /></td>
+                    </tr>
+                }
+    

@@ -28,13 +28,14 @@ namespace WebUI.Controllers
 
         public ActionResult Month()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                _repository.Add(new CostItem("Bread" + i, DateTime.Now, 12 + i));
-            }
-
             var temp = _repository.GetMonth(2013, 10);
             return View("Month", temp);
+        }
+
+        public void AddItem(CostItem item)
+        {
+            var temp = item;
+            var fd = temp;
         }
     }
 }

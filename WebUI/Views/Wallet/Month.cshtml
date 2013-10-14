@@ -1,4 +1,5 @@
-﻿@model Domain.Code.Time.Month
+﻿@using Domain.Code.General
+@model Domain.Code.Time.Month
 
 <div>
     <p>@Model.Name</p>
@@ -8,12 +9,7 @@
         {
             if (day.CostItems.Count == 0)
             {
-                <tr>
-                    <td>@day.Date.Day</td>
-                    <td>@day.Name</td>
-                    <td>@Html.TextBox("CostItemName")</td>
-                    <td>@Html.TextBox("Price")</td>
-                </tr>
+                Html.RenderPartial("Day", day);
             }
             else
             {
@@ -28,7 +24,8 @@
                 {
                     <tr>
                         <td>@day.CostItems[i].Name</td>
-                    <td>@day.CostItems[i].Price</td>
+                        <td>@day.CostItems[i].Price</td>
+                        <td><input type="submit" value="Отправить" /></td>
                     </tr>
                 }
 
