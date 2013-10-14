@@ -69,6 +69,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Code\Common\ConfigureHelper.cs" />
     <Compile Include="Code\Common\DIServiceLocator.cs" />
+    <Compile Include="Code\DatabaseItems\AccountModels.cs" />
     <Compile Include="Code\DatabaseItems\WalletInspectorContext.cs" />
     <Compile Include="Code\Repository\MsSqlTagRepository.cs" />
     <Compile Include="Code\Time\AllTime.cs" />

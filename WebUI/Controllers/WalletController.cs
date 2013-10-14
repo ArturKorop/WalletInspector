@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Code.Common;
+using Domain.Code.General;
 using Domain.Code.Time;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
+
 
 namespace WebUI.Controllers
 {
@@ -26,6 +28,11 @@ namespace WebUI.Controllers
 
         public ActionResult Month()
         {
+            for (int i = 0; i < 10; i++)
+            {
+                _repository.Add(new CostItem("Bread" + i, DateTime.Now, 12 + i));
+            }
+
             var temp = _repository.GetMonth(2013, 10);
             return View("Month", temp);
         }
