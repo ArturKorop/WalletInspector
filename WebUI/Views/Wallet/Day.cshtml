@@ -29,16 +29,17 @@ else
             <td>@Html.TextBox("Name", @Model.CostItems[0].Name)</td>
             <td>@Html.TextBox("Price", @Model.CostItems[0].Price.ToString(CultureInfo.InvariantCulture))</td>
             <td>@{ var temp = Model.CostItems[0].TagNames.Count > 0 ? Model.CostItems[0].TagNames[0] : ""; }@Html.TextBox("TagNames", @temp)</td>
+            @Html.Hidden("id", Model.CostItems[0].Id)
             <td><input type="submit" value="Update" /></td>
         }
         @using (@Html.BeginForm("DeleteItem", "Wallet"))
-            {
+        {
                 @Html.Hidden("id", Model.CostItems[0].Id)
                 <td><input type="submit" value="Delete" /></td>
-            }         
+        }         
     </tr>
-    for (int i = 1; i < count; i++)
-    {
+        for (int i = 1; i < count; i++)
+        {
         <tr>
             
             @using (@Html.BeginForm("UpdateItem", "Wallet"))
@@ -54,7 +55,7 @@ else
                 <td><input type="submit" value="Delete" /></td>
             }
         </tr>
-    }
+        }
     <tr>
         @using (@Html.BeginForm("AddItem", "Wallet"))
         {

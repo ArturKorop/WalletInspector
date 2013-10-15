@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Domain.Code.Common;
 using Domain.Code.General;
-using Domain.Code.Time;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
 
@@ -28,26 +24,26 @@ namespace WebUI.Controllers
 
         public ActionResult Month()
         {
-            var temp = _repository.GetMonth(2010, 10);
+            var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
             return View("Month", temp);
         }
 
-        public void AddItem(CostItem item)
+        public ActionResult AddItem(CostItem item)
         {
-            var temp = item;
-            var fd = temp;
+            _repository.Add(item);
+            return  RedirectToAction("Month");
         }
 
-        public void UpdateItem(CostItem item)
+        public ActionResult UpdateItem(CostItem item, int id)
         {
-            var temp = item;
-            var fd = temp;
+            _repository.Update(id, item);
+            return RedirectToAction("Month");
         }
 
-        public void DeleteItem(int id)
+        public ActionResult DeleteItem(int id)
         {
-            var temp = id;
-            var fd = temp;
+            _repository.Remove(id);
+            return RedirectToAction("Month");
         }
     }
 }
