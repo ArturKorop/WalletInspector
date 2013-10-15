@@ -27,6 +27,7 @@ namespace WebUI.Controllers
             return View("Month", temp);
         }
 
+        [HttpPost]
         public ActionResult AddItem(CostItem item)
         {
             _repository.Add(item);

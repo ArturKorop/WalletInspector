@@ -19,8 +19,8 @@
 @{ var count = Model.CostItems.Count; }
 @if (count == 0)
 {
-    <tr id="kkk">
-        @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions{UpdateTargetId = "kkk"}))
+    <tr id="ddds">
+        @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "ddds" }))
         {
             <td>@Model.Date.Day</td>
             <td>@Model.Name</td>
