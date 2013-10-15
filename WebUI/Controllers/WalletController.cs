@@ -5,7 +5,6 @@ using Domain.Code.General;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
 
-
 namespace WebUI.Controllers
 {
     public class WalletController : Controller
@@ -31,19 +30,40 @@ namespace WebUI.Controllers
         public ActionResult AddItem(CostItem item)
         {
             _repository.Add(item);
-            return  RedirectToAction("Month");
+            if (Request.IsAjaxRequest())
+            {
+                var result = _repository.GetMonth(item.Date.Year, item.Date.Month).GetDay(item.Date.Day);
+                return PartialView("Day", result);
+            }
+
+            var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
+            return RedirectToAction("Month", temp);
         }
 
         public ActionResult UpdateItem(CostItem item, int id)
         {
             _repository.Update(id, item);
-            return RedirectToAction("Month");
+            if (Request.IsAjaxRequest())
+            {
+                var result = _repository.GetMonth(item.Date.Year, item.Date.Month).GetDay(item.Date.Day);
+                return PartialView("Day", result);
+            }
+
+            var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
+            return RedirectToAction("Month", temp);
         }
 
         public ActionResult DeleteItem(int id)
         {
             _repository.Remove(id);
-            return RedirectToAction("Month");
+            if(Request.IsAjaxRequest())
+            {
+                var result = _repository.GetMonth(2013, 10).GetDay(10);
+                return PartialView("Day", result);
+            }
+
+            var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
+            return RedirectToAction("Month", temp);
         }
     }
 }

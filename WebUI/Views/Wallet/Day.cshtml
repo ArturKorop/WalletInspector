@@ -1,17 +1,32 @@
-﻿@using System.Globalization
+﻿<style type="text/css">
+     .TextBoxMiddle 
+     {
+         width: 100px;
+         margin: 1px 0 0 1px;
+         padding: 0;
+     }
+     
+     td 
+     {
+         margin: 2px;
+         padding: 2px;
+     }
+ </style>
+
+@using System.Globalization
 @model Domain.Code.Time.Day
 
 @{ var count = Model.CostItems.Count; }
 @if (count == 0)
 {
-    <tr>
-        @using (@Html.BeginForm("AddItem", "Wallet"))
+    <tr id="kkk">
+        @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions{UpdateTargetId = "kkk"}))
         {
             <td>@Model.Date.Day</td>
             <td>@Model.Name</td>
-            <td>@Html.TextBox("Name", "")</td>
-            <td>@Html.TextBox("Price")</td>
-            <td>@Html.TextBox("TagNames")</td>
+            <td class="TextBoxMiddle">@Html.TextBox("Name", "", new {@class = "TextBoxMiddle"})</td>
+            <td>@Html.TextBox("Price", "", new {@class = "TextBoxMiddle"})</td>
+            <td>@Html.TextBox("TagNames", "", new {@class = "TextBoxMiddle"})</td>
             @Html.Hidden("Date", Model.Date)
             <td><input type="submit" value="Add" /></td>
             <td></td>
@@ -24,44 +39,45 @@ else
         @{ var tempCount = count + 1; }
         <td rowspan="@tempCount">@Model.Date.Day</td>
         <td rowspan="@tempCount">@Model.Name</td>
-        @using (@Html.BeginForm("UpdateItem", "Wallet"))
+        @using (@Ajax.BeginForm("UpdateItem", "Wallet", FormMethod.Post, null))
         {
-            <td>@Html.TextBox("Name", @Model.CostItems[0].Name)</td>
-            <td>@Html.TextBox("Price", @Model.CostItems[0].Price.ToString(CultureInfo.InvariantCulture))</td>
-            <td>@{ var temp = Model.CostItems[0].TagNames.Count > 0 ? Model.CostItems[0].TagNames[0] : ""; }@Html.TextBox("TagNames", @temp)</td>
+            <td>@Html.TextBox("Name", @Model.CostItems[0].Name, new {@class = "TextBoxMiddle"})</td>
+            <td>@Html.TextBox("Price", @Model.CostItems[0].Price.ToString(CultureInfo.InvariantCulture), new {@class = "TextBoxMiddle"})</td>
+            <td>@{ var temp = Model.CostItems[0].TagNames.Count > 0 ? Model.CostItems[0].TagNames[0] : ""; }@Html.TextBox("TagNames", @temp, new {@class = "TextBoxMiddle"})</td>
             @Html.Hidden("id", Model.CostItems[0].Id)
             <td><input type="submit" value="Update" /></td>
         }
-        @using (@Html.BeginForm("DeleteItem", "Wallet"))
+        @using (@Ajax.BeginForm("DeleteItem", "Wallet", FormMethod.Post, null))
         {
-                @Html.Hidden("id", Model.CostItems[0].Id)
-                <td><input type="submit" value="Delete" /></td>
+            @Html.Hidden("id", Model.CostItems[0].Id)
+            <td><input type="submit" value="Delete" /></td>
         }         
     </tr>
-        for (int i = 1; i < count; i++)
-        {
+    for (int i = 1; i < count; i++)
+    {
         <tr>
             
-            @using (@Html.BeginForm("UpdateItem", "Wallet"))
+            @using (@Ajax.BeginForm("UpdateItem", "Wallet", FormMethod.Post, null))
             {
-            <td>@Html.TextBox("Name", @Model.CostItems[i].Name)</td>
-            <td>@Html.TextBox("Price", @Model.CostItems[i].Price.ToString(CultureInfo.InvariantCulture))</td>
-            <td>@{ var temp = Model.CostItems[0].TagNames.Count > 0 ? Model.CostItems[0].TagNames[0] : ""; }@Html.TextBox("TagNames", @temp)</td>
-            <td><input type="submit" value="Update" /></td>
+                <td>@Html.TextBox("Name", @Model.CostItems[i].Name, new {@class = "TextBoxMiddle"})</td>
+                <td>@Html.TextBox("Price", @Model.CostItems[i].Price.ToString(CultureInfo.InvariantCulture), new {@class = "TextBoxMiddle"})</td>
+                <td>@{ var temp = Model.CostItems[0].TagNames.Count > 0 ? Model.CostItems[0].TagNames[0] : ""; }@Html.TextBox("TagNames", @temp, new {@class = "TextBoxMiddle"})</td>
+                @Html.Hidden("id", Model.CostItems[i].Id)
+                <td><input type="submit" value="Update" /></td>
             }
-            @using (@Html.BeginForm("DeleteItem", "Wallet"))
+            @using (@Ajax.BeginForm("DeleteItem", "Wallet", FormMethod.Post, null))
             {
                 @Html.Hidden("id", Model.CostItems[i].Id)
                 <td><input type="submit" value="Delete" /></td>
             }
         </tr>
-        }
+    }
     <tr>
-        @using (@Html.BeginForm("AddItem", "Wallet"))
+        @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, null))
         {
-            <td>@Html.TextBox("Name", "")</td>
-            <td>@Html.TextBox("Price")</td>
-            <td>@Html.TextBox("TagNames")</td>
+            <td>@Html.TextBox("Name", "", new {@class = "TextBoxMiddle"})</td>
+            <td>@Html.TextBox("Price", "", new {@class = "TextBoxMiddle"})</td>
+            <td>@Html.TextBox("TagNames", "", new {@class = "TextBoxMiddle"})</td>
             @Html.Hidden("Date", Model.Date)
             <td><input type="submit" value="Add" /></td>
             <td></td>
