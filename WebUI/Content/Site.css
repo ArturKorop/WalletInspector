@@ -754,3 +754,40 @@ tr.pager td {
             margin: 0;
         }
 }
+/* My
+--------------------------------------*/
+.TextBoxMiddle 
+     {
+         width: 100px;
+         margin: 1px 0 0 1px;
+         padding: 0;
+     }
+     
+     .Label {
+         margin: 1px;
+         padding: 1px;
+     }
+     
+     .LableLittle {
+         width: 40px;
+         margin: 1px;
+         padding: 1px;
+     }
+     
+     .LabelMiddle {
+         width: 80px;
+         margin: 1px;
+         padding: 1px;
+     }
+     
+     .LabelBig {
+         width: 100px;
+         margin: 1px;
+         padding: 1px;
+     }
+     
+     .MainDiv {
+         border-style: solid;
+         width: 700px;
+         border-width: 1px;
+     }

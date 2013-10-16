@@ -6,7 +6,9 @@
         <table>
             @foreach (var day in Model.Days)
             {
-                Html.RenderPartial("Day", day);
+                <div>
+                    @{ Html.RenderPartial("DayInDiv", day); }
+                </div>
             }
         </table>
     </div>

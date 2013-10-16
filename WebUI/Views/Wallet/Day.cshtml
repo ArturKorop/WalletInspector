@@ -16,11 +16,15 @@
 @using System.Globalization
 @model Domain.Code.Time.Day
 
-@{ var count = Model.CostItems.Count; }
+@{
+    var count = Model.CostItems.Count;
+    var id = "Day" + Model.Date.Day;
+}
 @if (count == 0)
 {
-    <tr id="ddds">
-        @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "ddds" }))
+
+    <tr id="@id">
+        @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions {InsertionMode = InsertionMode.Replace,}))
         {
             <td>@Model.Date.Day</td>
             <td>@Model.Name</td>

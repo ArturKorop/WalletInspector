@@ -41,6 +41,7 @@ namespace WebUI.Controllers
             return RedirectToAction("Month", temp);
         }
 
+        [HttpPost]
         public ActionResult UpdateItem(CostItem item, int id)
         {
             _repository.Update(id, item);
@@ -54,6 +55,7 @@ namespace WebUI.Controllers
             return RedirectToAction("Month", temp);
         }
 
+        [HttpPost]
         public ActionResult DeleteItem(int id)
         {
             _repository.Remove(id);
