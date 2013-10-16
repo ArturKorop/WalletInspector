@@ -48,6 +48,11 @@ namespace Domain.Code.Repository
             _context.SaveChanges();
         }
 
+        public CostItem GetItemById(int id)
+        {
+            return _context.CostItems.Single(x => x.Id == id);
+        }
+
         public int Add(CostItem item)
         {
             item.SetTagIds();

@@ -7,28 +7,11 @@
 @model Domain.Code.Time.Day
 
 @{
-    var count = Model.CostItems.Count;
     var id = "Day" + Model.Date.Day;
 }
 
-@if (count == 0)
-{
-    <div class="MainDiv" id="@id">
-        @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions {UpdateTargetId = @id}))
-        {
-            <div class="LableLittle" style="display: inline-block;">@Model.Date.Day</div>
-            <div class="LabelMiddle" style="display: inline-block;">@Model.Name</div>
-            <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Name", "", new {@class = "TextBoxMiddle"})</div>
-            <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Price", "", new {@class = "TextBoxMiddle"})</div>
-            <div class="LabelBig" style="display: inline-block;">@Html.TextBox("TagNames", "", new {@class = "TextBoxMiddle"})</div>
-            @Html.Hidden("Date", Model.Date)
-            <div style="display: inline-block;"><input type="submit" value="Add" style="height: 20px; font-size: 1em; padding: 1px;"/></div>
-        }
-    </div>
-}
-else
-{
-    <div class="MainDiv" id="@id">
+<div id="@id">
+    <div class="MainDiv">
         <div class="LableLittle" style="display: inline-block;">@Model.Date.Day</div>
         <div class="LabelMiddle" style="display: inline-block;">@Model.Name</div>
         <div style="display: inline-block">            
@@ -43,19 +26,24 @@ else
                         @Html.Hidden("Date", Model.Date)
                         @Html.Hidden("id", item.Id)
                         <div style="display: inline-block;"><input type="submit" value="Update" style="height: 20px; font-size: 1em; padding: 1px;"/></div>
+                        <div style="display: inline-block;">@Ajax.ActionLink("Delete", "DeleteItem", new { id = item.Id }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = @id })</div>
                     }
-                    <div style="display: inline-block;">@Ajax.ActionLink("Delete", "DeleteItem", new { id = item.Id }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = @id })</div>
                 </div>
             }
-            @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = @id }))
-            {
-                <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Name", "", new {@class = "TextBoxMiddle"})</div>
-                <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Price", "", new {@class = "TextBoxMiddle"})</div>
-                <div class="LabelBig" style="display: inline-block;">@Html.TextBox("TagNames", "", new {@class = "TextBoxMiddle"})</div>
-                @Html.Hidden("Date", Model.Date)
-                <div style="display: inline-block;"><input type="submit" value="Add" style="height: 20px; font-size: 1em; padding: 1px;"/></div>
-            }
+            <div>
+                @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions {InsertionMode = InsertionMode.Replace, UpdateTargetId = @id}))
+                {
+                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Name", "", new {@class = "TextBoxMiddle"})</div>
+                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Price", "", new {@class = "TextBoxMiddle"})</div>
+                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("TagNames", "", new {@class = "TextBoxMiddle"})</div>
+                    @Html.Hidden("Date", Model.Date)
+                    <div style="display: inline-block;"><input type="submit" value="Add" style="height: 20px; font-size: 1em; padding: 1px;"/></div>
+                }
+            </div>
         </div>
     </div>
-}
+</div>
+             
+
+
     

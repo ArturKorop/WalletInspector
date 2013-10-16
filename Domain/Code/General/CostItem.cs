@@ -80,5 +80,10 @@ namespace Domain.Code.General
             TagIds = item.TagIds;
             SetTagIds();
         }
+
+        public bool IsValid()
+        {
+            return !String.IsNullOrWhiteSpace(Name);
+        }
     }
 }

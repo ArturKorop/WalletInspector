@@ -3,13 +3,9 @@
     <div>
         <p>@Model.Name</p>
         <p>@Model.MonthNumber</p> 
-        <table>
-            @foreach (var day in Model.Days)
-            {
-                <div>
-                    @{ Html.RenderPartial("DayInDiv", day); }
-                </div>
-            }
-        </table>
+        @foreach (var day in Model.Days)
+        {
+            Html.RenderPartial("DayInDiv", day);
+        }
     </div>
 }
