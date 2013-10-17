@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using Domain.Code.Common;
 using Domain.Code.General;
@@ -17,26 +16,26 @@ namespace WebUI.Controllers
             _repository = DIServiceLocator.Current.Resolve<IRepository>();
         }
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }
 
-        public ActionResult CurrentMonth()
+        public ViewResult CurrentMonth()
         {
             var date = DateTime.Now;
 
             return GetMonth(date);
         }
 
-        public ActionResult PrevMonth(DateTime currentMonth)
+        public ViewResult PrevMonth(DateTime currentMonth)
         {
             var date = currentMonth.AddMonths(-1);
 
             return GetMonth(date);
         }
 
-        public ActionResult NextMonth(DateTime currentMonth)
+        public ViewResult NextMonth(DateTime currentMonth)
         {
             var date = currentMonth.AddMonths(1);
 
@@ -92,9 +91,14 @@ namespace WebUI.Controllers
             return RedirectToAction("CurrentMonth", temp);
         }
 
-        private ActionResult GetMonth(DateTime date)
+        private ViewResult GetMonth(DateTime date)
         {
             return View("Month", _repository.GetMonth(date.Year, date.Month));
+        }
+
+        public ViewResult CurrentYear()
+        {
+            return View("Year", _repository.GetYear(DateTime.Now.Year));
         }
     }
 }

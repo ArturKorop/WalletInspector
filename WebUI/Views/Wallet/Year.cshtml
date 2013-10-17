@@ -1,0 +1,15 @@
+﻿@model Domain.Code.Time.Year
+
+@section featured {
+    <div id="YearMain">
+        <div>@Model.Name</div>
+        <div id="MonthList">
+            @for (int i = 0; i < 12; i++)
+            {
+                <div class="MonthStat">
+                    @i
+                </div>
+            }
+        </div>
+    </div>
+}

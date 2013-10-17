@@ -801,5 +801,12 @@ tr.pager td {
          float: left;
      }
      
+     .MonthStat {
+         width: 100px;
+         height: 100px;
+         border-style: solid;
+         border-width: 1px;
+     }
+     
     
   
