@@ -11,5 +11,6 @@ namespace Domain.Interfaces
         void Update(int id, CostItem item);
         void Remove(int id);
         CostItem GetItemById(int id);
+        void SetUserId(int id);
     }
 }
