@@ -109,5 +109,27 @@ namespace UnitTests.DomainTests.GeneralTests
 
             Assert.AreEqual(target.Date, new DateTime(2011, 11, 11));
         }
+
+        [TestMethod]
+        public void IsValidTest()
+        {
+            var target = new CostItem("Bread", DateTime.Now, 12);
+ 
+            Assert.IsTrue(target.IsValid());
+        }
+
+        [TestMethod]
+        public void InValidNullTest()
+        {
+            var target = new CostItem();
+            Assert.IsFalse(target.IsValid());
+        }
+
+        [TestMethod]
+        public void InValidWhiteSpaceTest()
+        {
+            var target = new CostItem{Name = "   "};
+            Assert.IsFalse(target.IsValid());
+        }
     }
 }
