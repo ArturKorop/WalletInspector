@@ -23,6 +23,7 @@ namespace Domain.Code.Time
 
         public void Add(CostItem costItem)
         {
+            costItem.SetTagNames();
             CostItems.Add(costItem);
         }
 

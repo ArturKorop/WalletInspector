@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using Domain.Code.Common;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
@@ -14,18 +15,27 @@ namespace Domain.Code.General
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Required]
         public DateTime Date { get; set; }
+
         [Required]
         public double Price { get; set; }
+
         [Column("Tags")]
-        public List<int> TagIds { get; set; }
+        public string TagIdString { get; set; }
+
         [Required]
         public int UserId { get; set; }
+
         [NotMapped]
         public List<string> TagNames { get; set; }
+
+        [NotMapped]
+        public List<int> TagIds { get; set; }
 
         private static readonly ITagRepository TagRepository;
 
@@ -51,6 +61,11 @@ namespace Domain.Code.General
 
         public void SetTagNames()
         {
+            int temp;
+            Int32.TryParse(TagIdString, out temp);
+            if(temp > 0)
+                TagIds.Add(temp);
+
             TagNames.Clear();
             foreach (var tagId in TagIds)
             {
@@ -65,6 +80,8 @@ namespace Domain.Code.General
             {
                 TagIds.Add(TagRepository.GetTagId(tagName));
             }
+
+            TagIdString = TagIds.Count == 0 ? String.Empty : TagIds[0].ToString(CultureInfo.InvariantCulture);
         }
 
         public bool Equals(CostItem other)

@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.UI;
 using Domain.Code.Common;
 using Domain.Code.General;
-using Domain.Code.Time;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
 
@@ -20,13 +19,34 @@ namespace WebUI.Controllers
 
         public ActionResult Index()
         {
+            _repository.Add(new CostItem("D", DateTime.Now, 12) {TagIds = new List<int> {1, 2, 3}});
             return View();
         }
 
-        public ActionResult Month()
+        public ActionResult CurrentMonth()
         {
-            var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
-            return View("Month", temp);
+            var date = DateTime.Now;
+
+            return GetMonth(date);
+        }
+
+        public ActionResult PrevMonth(DateTime currentMonth)
+        {
+            var date = currentMonth.AddMonths(-1);
+
+            return GetMonth(date);
+        }
+
+        public ActionResult NextMonth(DateTime currentMonth)
+        {
+            var date = currentMonth.AddMonths(1);
+
+            return GetMonth(date);
+        }
+
+        private ActionResult GetMonth(DateTime date)
+        {
+            return View("Month", _repository.GetMonth(date.Year, date.Month));
         }
 
         [HttpPost]
@@ -43,7 +63,7 @@ namespace WebUI.Controllers
             }
 
             var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
-            return RedirectToAction("Month", temp);
+            return RedirectToAction("CurrentMonth", temp);
         }
 
         [HttpPost]
@@ -59,7 +79,7 @@ namespace WebUI.Controllers
             }
 
             var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
-            return RedirectToAction("Month", temp);
+            return RedirectToAction("CurrentMonth", temp);
         }
 
         [HttpPost]
@@ -75,7 +95,7 @@ namespace WebUI.Controllers
             }
 
             var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
-            return RedirectToAction("Month", temp);
+            return RedirectToAction("CurrentMonth", temp);
         }
     }
 }
