@@ -10,6 +10,7 @@ using Microsoft.Practices.Unity;
 namespace Domain.Code.General
 {
     [Table("CostItems")]
+    [Serializable]
     public class CostItem : IEquatable<CostItem>
     {
         [Key]

@@ -214,11 +214,11 @@ ul#menu {
 
     .featured .content-wrapper {
         background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -ms-linear-gradient(left, #7ac0da 0, #a4d4e6 100%);
+        background-image: -o-linear-gradient(left, #7ac0da 0, #a4d4e6 100%);
         background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -webkit-linear-gradient(left, #7ac0da 0, #a4d4e6 100%);
+        background-image: linear-gradient(left, #7ac0da 0, #a4d4e6 100%);
         color: #3e5667;
         padding: 20px 40px 30px 40px;
     }
@@ -537,7 +537,7 @@ table {
 th {
     font-size: 1.2em;
     text-align: left;
-    border: none 0px;
+    border: none 0;
     padding-left: 0;
 }
 
@@ -564,7 +564,7 @@ th {
     th.asc a:after, th.desc a:after {
         display: block;
         position: absolute;
-        right: 0em;
+        right: 0;
         top: 0;
         font-size: 0.75em;
     }
@@ -578,7 +578,7 @@ th {
     }
 
 td {
-    padding: 0.25em 2em 0.25em 0em;
+    padding: 0.25em 2em 0.25em 0;
     border: 0 none;
 }
 
@@ -754,8 +754,7 @@ tr.pager td {
             margin: 0;
         }
 }
-/* My
---------------------------------------*/
+/*----------------- Custom Styles ---------------------*/
 .TextBoxMiddle 
      {
          width: 100px;
@@ -788,6 +787,19 @@ tr.pager td {
      
      .MainDiv {
          border-style: solid;
-         width: 700px;
+         width: 600px;
          border-width: 1px;
      }
+     
+     #TableMonthLeft {
+         padding-left: 200px;
+         float: left;
+     }
+     
+     #TableMonthRight {
+         padding-left: 200px;
+         float: left;
+     }
+     
+    
+  

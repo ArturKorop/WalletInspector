@@ -1,18 +1,44 @@
 ﻿@model Domain.Code.Time.Month
 @section featured {
-    <div>
-        <p>@Model.ThisYear</p>
-        <p>@Model.Name</p>
-        <p>@Model.MonthNumber</p> 
+    <div style="">
+        <p style="display: inline-block">@Model.ThisYear</p>
+        <p style="display: inline-block">@Model.MonthNumber</p> 
+        <p style="display: inline-block">@Model.Name</p>
         <div>
-            @Html.ActionLink("Prev", "PrevMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})
-            @Html.ActionLink("Next", "NextMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})
+            <div style="display: inline-block">@Html.ActionLink("Prev", "PrevMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})</div>
+            <div style="display: inline-block">@Html.ActionLink("Next", "NextMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})</div>
         </div>
-        <div>
-            @foreach (var day in Model.Days)
-            {
-                Html.RenderPartial("DayInDiv", day);
-            }
+        <div id TableMonth>
+            <div id="TableMonthLeft">
+                <div class="MainDiv">
+                    <div class="LableLittle" style="display: inline-block;">N</div>
+                    <div class="LabelMiddle" style="display: inline-block;">Day</div>
+                    <div class="LabelBig" style="display: inline-block">Item</div>
+                    <div class="LabelBig" style="display: inline-block">Price</div>
+                    <div class="LabelBig" style="display: inline-block">Tag</div>
+                    <div class="LabelBig" style="display: inline-block">Actions</div>
+                    <div></div>
+                </div>
+                @for (int index = 0; index < 15; index++)
+                {
+                    Html.RenderPartial("DayInDiv", Model.Days[index]);
+                }
+            </div>
+            <div id="TableMonthRight">
+                <div class="MainDiv">
+                    <div class="LableLittle" style="display: inline-block;">N</div>
+                    <div class="LabelMiddle" style="display: inline-block;">Day</div>
+                    <div class="LabelBig" style="display: inline-block">Item</div>
+                    <div class="LabelBig" style="display: inline-block">Price</div>
+                    <div class="LabelBig" style="display: inline-block">Tag</div>
+                    <div class="LabelBig" style="display: inline-block">Actions</div>
+                    <div></div>
+                </div>
+                @for (int index = 15; index < Model.Days.Length; index++)
+                {
+                    Html.RenderPartial("DayInDiv", Model.Days[index]);
+                }
+            </div>
         </div>
     </div>
 }

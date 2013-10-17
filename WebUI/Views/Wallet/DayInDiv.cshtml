@@ -1,9 +1,4 @@
-﻿<style type="text/css">
-     
-     
- </style>
-
-@using System.Globalization
+﻿@using System.Globalization
 @model Domain.Code.Time.Day
 
 @{
@@ -11,7 +6,7 @@
 }
 
 <div id="@id">
-    <div class="MainDiv">
+<div class="MainDiv">
         <div class="LableLittle" style="display: inline-block;">@Model.Date.Day</div>
         <div class="LabelMiddle" style="display: inline-block;">@Model.Name</div>
         <div style="display: inline-block">            
@@ -20,9 +15,9 @@
                 <div>
                     @using (@Ajax.BeginForm("UpdateItem", "Wallet", FormMethod.Post, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = @id }))
                     {
-                        <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Name", item.Name, new {@class = "TextBoxMiddle"})</div>
-                        <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Price", item.Price.ToString(CultureInfo.InvariantCulture), new {@class = "TextBoxMiddle"})</div>
-                        <div class="LabelBig" style="display: inline-block;">@{ var temp = item.TagNames.Count > 0 ? item.TagNames[0] : ""; }@Html.TextBox("TagNames", @temp, new {@class = "TextBoxMiddle"})</div>
+                        <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Name", item.Name, new { @class = "TextBoxMiddle" })</div>
+                        <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Price", item.Price.ToString(CultureInfo.InvariantCulture), new { @class = "TextBoxMiddle" })</div>
+                        <div class="LabelBig" style="display: inline-block;">@{ var temp = item.TagNames.Count > 0 ? item.TagNames[0] : ""; }@Html.TextBox("TagNames", @temp, new { @class = "TextBoxMiddle" })</div>
                         @Html.Hidden("Date", Model.Date)
                         @Html.Hidden("id", item.Id)
                         <div style="display: inline-block;"><input type="submit" value="Update" style="height: 20px; font-size: 1em; padding: 1px;"/></div>
@@ -31,11 +26,11 @@
                 </div>
             }
             <div>
-                @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions {InsertionMode = InsertionMode.Replace, UpdateTargetId = @id}))
+                @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = @id }))
                 {
-                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Name", "", new {@class = "TextBoxMiddle"})</div>
-                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Price", "", new {@class = "TextBoxMiddle"})</div>
-                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("TagNames", "", new {@class = "TextBoxMiddle"})</div>
+                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Name", "", new { @class = "TextBoxMiddle" })</div>
+                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Price", "", new { @class = "TextBoxMiddle" })</div>
+                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("TagNames", "", new { @class = "TextBoxMiddle" })</div>
                     @Html.Hidden("Date", Model.Date)
                     <div style="display: inline-block;"><input type="submit" value="Add" style="height: 20px; font-size: 1em; padding: 1px;"/></div>
                 }

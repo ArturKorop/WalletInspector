@@ -19,7 +19,6 @@ namespace WebUI.Controllers
 
         public ActionResult Index()
         {
-            _repository.Add(new CostItem("D", DateTime.Now, 12) {TagIds = new List<int> {1, 2, 3}});
             return View();
         }
 
@@ -42,11 +41,6 @@ namespace WebUI.Controllers
             var date = currentMonth.AddMonths(1);
 
             return GetMonth(date);
-        }
-
-        private ActionResult GetMonth(DateTime date)
-        {
-            return View("Month", _repository.GetMonth(date.Year, date.Month));
         }
 
         [HttpPost]
@@ -96,6 +90,11 @@ namespace WebUI.Controllers
 
             var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
             return RedirectToAction("CurrentMonth", temp);
+        }
+
+        private ActionResult GetMonth(DateTime date)
+        {
+            return View("Month", _repository.GetMonth(date.Year, date.Month));
         }
     }
 }
