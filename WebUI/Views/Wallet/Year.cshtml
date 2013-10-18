@@ -14,16 +14,14 @@
                              monthNumber++;
                              var currentMonth = Model.GetMonth(monthNumber);
                          }
-                         <p>@currentMonth.Name</p>
-                         <p>@currentMonth.Days.Count()</p>
-                         <p>@currentMonth.Statistic.GetMonthTotalSum()</p>
+                         @Html.Partial("MonthStatistic", currentMonth)
                      </div>
                  }
              </div>
             }
         </div>
         <div id="TotalYearSum">
-            @Model.Statistic.GetYearTotalSum()
+            Total: @Model.Statistic.GetYearTotalSum()
         </div>
     </div>
 }

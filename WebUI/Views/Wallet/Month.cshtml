@@ -1,6 +1,6 @@
 ﻿@model Domain.Code.Time.Month
 @section featured {
-    <div style="">
+    <div style="margin: 0 auto;text-align: center;">
         <p style="display: inline-block">@Model.ThisYear</p>
         <p style="display: inline-block">@Model.MonthNumber</p> 
         <p style="display: inline-block">@Model.Name</p>
@@ -8,9 +8,9 @@
             <div style="display: inline-block">@Html.ActionLink("Prev", "PrevMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})</div>
             <div style="display: inline-block">@Html.ActionLink("Next", "NextMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})</div>
         </div>
-        <div id TableMonth>
+        <div id="TableMonth">
             <div id="TableMonthLeft">
-                <div class="MainDiv">
+                <div class="MainMonth">
                     <div class="LableLittle" style="display: inline-block;">N</div>
                     <div class="LabelMiddle" style="display: inline-block;">Day</div>
                     <div class="LabelBig" style="display: inline-block">Item</div>
@@ -25,7 +25,7 @@
                 }
             </div>
             <div id="TableMonthRight">
-                <div class="MainDiv">
+                <div class="MainMonth">
                     <div class="LableLittle" style="display: inline-block;">N</div>
                     <div class="LabelMiddle" style="display: inline-block;">Day</div>
                     <div class="LabelBig" style="display: inline-block">Item</div>
