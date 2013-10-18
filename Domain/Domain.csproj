@@ -82,6 +82,8 @@
     <Compile Include="Code\DatabaseItems\AccountModels.cs" />
     <Compile Include="Code\DatabaseItems\WalletInspectorContext.cs" />
     <Compile Include="Code\Repository\MsSqlTagRepository.cs" />
+    <Compile Include="Code\Statistic\MonthStatistic.cs" />
+    <Compile Include="Code\Statistic\YearStatistic.cs" />
     <Compile Include="Code\Time\AllTime.cs" />
     <Compile Include="Code\Time\Day.cs" />
     <Compile Include="Code\Time\Month.cs" />

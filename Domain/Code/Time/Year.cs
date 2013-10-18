@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Code.General;
+using Domain.Code.Statistic;
 
 namespace Domain.Code.Time
 {
@@ -15,6 +16,8 @@ namespace Domain.Code.Time
             get { return _months; }
         }
 
+        public YearStatistic Statistic { get; private set; }
+
         public Year(int name)
         {
             if(name < 1900 || name > 2100)
@@ -26,6 +29,7 @@ namespace Domain.Code.Time
             {
                 _months[i] = new Month(Name, i + 1);
             }
+            Statistic = new YearStatistic(this);
         }
 
         public void AddCostItem(CostItem item)
@@ -44,6 +48,11 @@ namespace Domain.Code.Time
             }
         }
 
+        /// <summary>
+        /// Return <see cref="Month"/> where MonthNumber from 1 to 12
+        /// </summary>
+        /// <param name="monthNumber">Number of month, which must be return</param>
+        /// <returns><see cref="Month"/> which number was inputed</returns>
         public Month GetMonth(int monthNumber)
         {
             if(monthNumber < 1 || monthNumber > 12)

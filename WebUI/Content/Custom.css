@@ -1,0 +1,63 @@
+﻿/* Labels */
+.Label {
+    margin: 1px;
+    padding: 1px;
+}
+
+.LableLittle {
+    width: 40px;
+    margin: 1px;
+    padding: 1px;
+}
+
+.LabelMiddle {
+    width: 80px;
+    margin: 1px;
+    padding: 1px;
+}
+
+.LabelBig {
+     width: 100px;
+     margin: 1px;
+     padding: 1px;
+}
+/* End Labels */
+/* Divs */
+.MainDiv {
+    border-style: solid;
+    width: 600px;
+    border-width: 1px;
+}
+
+#TableMonthLeft {
+    padding-left: 200px;
+    float: left;
+}
+
+#TableMonthRight {
+    padding-left: 200px;
+    float: left;
+}
+
+.MonthStat {
+    width: 100px;
+    height: 100px;
+    border-style: solid;
+    border-width: 1px;
+}
+#YearMain {
+    text-align: center;
+}
+/* End Divs */
+/* TextBoxes */
+.TextBoxMiddle{
+    width: 100px;
+    margin: 1px 0 0 1px;
+    padding: 0;
+}
+/* End TextBoxes */
+
+     
+     
+     
+     

@@ -4,12 +4,26 @@
     <div id="YearMain">
         <div>@Model.Name</div>
         <div id="MonthList">
-            @for (int i = 0; i < 12; i++)
-            {
-                <div class="MonthStat">
-                    @i
-                </div>
+            @{ var monthNumber = 0; }
+            @for (int i = 0; i < 3; i++)
+            {<div id="GrouptMonthStat">
+                 @for (int j = 0; j < 4; j++)
+                 {
+                     <div style="display: inline-block;margin: 1em;padding: 0.5em" class="MonthStat">
+                         @{
+                             monthNumber++;
+                             var currentMonth = Model.GetMonth(monthNumber);
+                         }
+                         <p>@currentMonth.Name</p>
+                         <p>@currentMonth.Days.Count()</p>
+                         <p>@currentMonth.Statistic.GetMonthTotalSum()</p>
+                     </div>
+                 }
+             </div>
             }
+        </div>
+        <div id="TotalYearSum">
+            @Model.Statistic.GetYearTotalSum()
         </div>
     </div>
 }

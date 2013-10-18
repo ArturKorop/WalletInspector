@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Domain.Code.General;
+using Domain.Code.Statistic;
 
 namespace Domain.Code.Time
 {
@@ -13,6 +14,7 @@ namespace Domain.Code.Time
         public string Name { get; private set; }
         public int MonthNumber { get; private set; }
         public int ThisYear { get;private set; }
+        public MonthStatistic Statistic { get; private set; }
 
         public Day[] Days
         {
@@ -42,6 +44,7 @@ namespace Domain.Code.Time
             {
                 _days[i] = new Day(new DateTime(yearName, monthNumber, i + 1));
             }
+            Statistic = new MonthStatistic(this);
         }
 
         public void AddCostItem(CostItem item)
