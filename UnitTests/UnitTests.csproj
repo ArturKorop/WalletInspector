@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Common\TestHelper.cs" />
     <Compile Include="DomainTests\GeneralTests\CostIItemsTests.cs" />
+    <Compile Include="DomainTests\StatisticTests\MonthStatisticTests.cs" />
+    <Compile Include="DomainTests\StatisticTests\YearStatisticTests.cs" />
     <Compile Include="DomainTests\TimeTests\AllTimeTests.cs" />
     <Compile Include="DomainTests\TimeTests\DayTests.cs" />
     <Compile Include="DomainTests\TimeTests\MonthTests.cs" />
