@@ -5,16 +5,21 @@ using Domain.Code.Common;
 using Domain.Code.General;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
+using WebMatrix.WebData;
+using WebUI.Filters;
 
 namespace WebUI.Controllers
 {
     public class WalletController : Controller
     {
         private readonly IRepository _repository;
+        private readonly int _userId;
 
         public WalletController()
         {
             _repository = DIServiceLocator.Current.Resolve<IRepository>();
+            _userId = WebSecurity.CurrentUserId;
+            _repository.SetUserId(_userId);
         }
 
         public ActionResult Index()
@@ -48,7 +53,10 @@ namespace WebUI.Controllers
         {
             ModelState.Clear();
             if (item.IsValid())
+            {
+                item.UserId = _userId;
                 _repository.Add(item);
+            }
 
             if (Request.IsAjaxRequest())
             {

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Domain.Code.Common;
+using WebMatrix.WebData;
 
 namespace WebUI
 {
@@ -24,6 +25,7 @@ namespace WebUI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             ConfigureHelper.Configure();
+            WebSecurity.InitializeDatabaseConnection("WalletInspectorContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
         }
     }
 }
