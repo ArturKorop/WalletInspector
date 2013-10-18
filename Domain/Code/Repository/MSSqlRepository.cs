@@ -11,6 +11,7 @@ namespace Domain.Code.Repository
     public class MsSqlRepository : IRepository
     {
         private readonly WalletInspectorContext _context;
+        private int _userId;
 
         public MsSqlRepository()
         {
@@ -37,20 +38,25 @@ namespace Domain.Code.Repository
 
         public void Update(int id, CostItem item)
         {
-            var tempItem = _context.CostItems.Single(x => x.Id == id);
+            var tempItem = _context.CostItems.Single(x => x.Id == id && x.UserId == _userId);
             tempItem.Update(item);
             _context.SaveChanges();
         }
 
         public void Remove(int id)
         {
-            _context.CostItems.Delete(x => x.Id == id);
+            _context.CostItems.Delete(x => x.Id == id && x.UserId == _userId);
             _context.SaveChanges();
         }
 
         public CostItem GetItemById(int id)
         {
-            return _context.CostItems.Single(x => x.Id == id);
+            return _context.CostItems.Single(x => x.Id == id && x.UserId == _userId);
+        }
+
+        public void SetUserId(int id)
+        {
+            _userId = id != -1 ? id : 0;
         }
 
         public int Add(CostItem item)
@@ -70,12 +76,12 @@ namespace Domain.Code.Repository
 
         private IEnumerable<CostItem> GetYearItems(int year)
         {
-            return _context.CostItems.Where(x => x.Date.Year == year).ToList();
+            return _context.CostItems.Where(x => x.Date.Year == year && x.UserId == _userId).ToList();
         }
 
         private IEnumerable<CostItem> GetMonthItems(int year, int month)
         {
-            return _context.CostItems.Where(x => x.Date.Year == year && x.Date.Month == month).ToList();
+            return _context.CostItems.Where(x => x.Date.Year == year && x.Date.Month == month && x.UserId == _userId).ToList();
         }
     }
 }
