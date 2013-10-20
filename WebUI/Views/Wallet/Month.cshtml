@@ -1,7 +1,8 @@
-﻿@model Domain.Code.Time.Month
+﻿@using System.Globalization
+@model Domain.Code.Time.Month
 @section featured {
     <div style="margin: 0 auto;text-align: center;">
-        <p style="display: inline-block">@Model.ThisYear</p>
+        <p style="display: inline-block">@Html.ActionLink(Model.ThisYear.ToString(CultureInfo.InvariantCulture), "Year", new {year = Model.ThisYear}, null)</p>
         <p style="display: inline-block">@Model.MonthNumber</p> 
         <p style="display: inline-block">@Model.Name</p>
         <div>
@@ -21,7 +22,7 @@
                 </div>
                 @for (int index = 0; index < 15; index++)
                 {
-                    Html.RenderPartial("DayInDiv", Model.Days[index]);
+                    Html.RenderPartial("Day", Model.Days[index]);
                 }
             </div>
             <div id="TableMonthRight">
@@ -36,7 +37,7 @@
                 </div>
                 @for (int index = 15; index < Model.Days.Length; index++)
                 {
-                    Html.RenderPartial("DayInDiv", Model.Days[index]);
+                    Html.RenderPartial("Day", Model.Days[index]);
                 }
             </div>
         </div>

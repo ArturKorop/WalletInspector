@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.Mvc;
 using Domain.Code.Common;
 using Domain.Code.General;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
 using WebMatrix.WebData;
-using WebUI.Filters;
 
 namespace WebUI.Controllers
 {
@@ -19,11 +19,6 @@ namespace WebUI.Controllers
             _repository = DIServiceLocator.Current.Resolve<IRepository>();
             _userId = WebSecurity.CurrentUserId;
             _repository.SetUserId(_userId);
-        }
-
-        public ViewResult Index()
-        {
-            return View();
         }
 
         public ViewResult CurrentMonth()
@@ -60,7 +55,7 @@ namespace WebUI.Controllers
             if (Request.IsAjaxRequest())
             {
                 var result = _repository.GetMonth(item.Date.Year, item.Date.Month).GetDay(item.Date.Day);
-                return PartialView("DayInDiv", result);
+                return PartialView("Day", result);
             }
 
             var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
@@ -75,7 +70,7 @@ namespace WebUI.Controllers
             if (Request.IsAjaxRequest())
             {
                 var result = _repository.GetMonth(item.Date.Year, item.Date.Month).GetDay(item.Date.Day);
-                var temp2 = PartialView("DayInDiv", result);
+                var temp2 = PartialView("Day", result);
                 return temp2;
             }
 
@@ -83,30 +78,53 @@ namespace WebUI.Controllers
             return RedirectToAction("CurrentMonth", temp);
         }
 
-        [HttpPost]
         public ActionResult DeleteItem(int id)
         {
             var date = _repository.GetItemById(id).Date;
             _repository.Remove(id);
-            if(Request.IsAjaxRequest())
+            if (Request.IsAjaxRequest())
             {
                 //TODO: refactore this for _repository.GetDay()
                 var result = _repository.GetMonth(date.Year, date.Month).GetDay(date.Day);
-                return PartialView("DayInDiv", result);
+                return PartialView("Day", result);
             }
 
             var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
             return RedirectToAction("CurrentMonth", temp);
         }
 
+        public ViewResult CurrentYear()
+        {
+            ViewBag.Title = DateTime.Now.Year;
+
+            return View("Year", _repository.GetYear(DateTime.Now.Year));
+        }
+
+        public ViewResult Year(int year)
+        {
+            ViewBag.Title = year;
+
+            return View("Year", _repository.GetYear(year));
+        }
+
+        public ViewResult Month(int year, int month)
+        {
+            ViewBag.Title = CreateMonthTitleText(new DateTime(year, month, 1));
+
+            return View("Month", _repository.GetMonth(year, month));
+        }
+
         private ViewResult GetMonth(DateTime date)
         {
+            ViewBag.Title = CreateMonthTitleText(date);
+
             return View("Month", _repository.GetMonth(date.Year, date.Month));
         }
 
-        public ViewResult CurrentYear()
+        private string CreateMonthTitleText(DateTime date)
         {
-            return View("Year", _repository.GetYear(DateTime.Now.Year));
+            return String.Format("{0}: {1}", date.Year,
+                                 CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(date.Month));
         }
     }
 }

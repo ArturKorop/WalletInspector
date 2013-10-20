@@ -1,99 +1,44 @@
-﻿<style type="text/css">
-     .TextBoxMiddle 
-     {
-         width: 100px;
-         margin: 1px 0 0 1px;
-         padding: 0;
-     }
-     
-     td 
-     {
-         margin: 2px;
-         padding: 2px;
-     }
- </style>
-
-@using System.Globalization
+﻿@using System.Globalization
 @model Domain.Code.Time.Day
 
 @{
-    var count = Model.CostItems.Count;
     var id = "Day" + Model.Date.Day;
 }
-@if (count == 0)
-{
 
-    <tr id="@id">
-        @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions {InsertionMode = InsertionMode.Replace,}))
-        {
-            <td>@Model.Date.Day</td>
-            <td>@Model.Name</td>
-            <td class="TextBoxMiddle">@Html.TextBox("Name", "", new {@class = "TextBoxMiddle"})</td>
-            <td>@Html.TextBox("Price", "", new {@class = "TextBoxMiddle"})</td>
-            <td>@Html.TextBox("TagNames", "", new {@class = "TextBoxMiddle"})</td>
-            @Html.Hidden("Date", Model.Date)
-            <td><input type="submit" value="Add" /></td>
-            <td></td>
-        }
-    </tr>
-}
-else
-{
-    <tr>
-        @{ var tempCount = count + 1; }
-        <td rowspan="@tempCount">@Model.Date.Day</td>
-        <td rowspan="@tempCount">@Model.Name</td>
-        @using (@Ajax.BeginForm("UpdateItem", "Wallet", FormMethod.Post, null))
-        {
-            <td>@Html.TextBox("Name", @Model.CostItems[0].Name, new {@class = "TextBoxMiddle"})</td>
-            <td>@Html.TextBox("Price", @Model.CostItems[0].Price.ToString(CultureInfo.InvariantCulture), new {@class = "TextBoxMiddle"})</td>
-            <td>@{ var temp = Model.CostItems[0].TagNames.Count > 0 ? Model.CostItems[0].TagNames[0] : ""; }@Html.TextBox("TagNames", @temp, new {@class = "TextBoxMiddle"})</td>
-            @Html.Hidden("id", Model.CostItems[0].Id)
-            <td><input type="submit" value="Update" /></td>
-        }
-        @using (@Ajax.BeginForm("DeleteItem", "Wallet", FormMethod.Post, null))
-        {
-            @Html.Hidden("id", Model.CostItems[0].Id)
-            <td><input type="submit" value="Delete" /></td>
-        }         
-    </tr>
-    for (int i = 1; i < count; i++)
-    {
-        <tr>
-            
-            @using (@Ajax.BeginForm("UpdateItem", "Wallet", FormMethod.Post, null))
+<div id="@id">
+<div class="MainDay">
+        <div class="LableLittle" style="display: inline-block;">@Model.Date.Day</div>
+        <div class="LabelMiddle" style="display: inline-block;">@Model.Name</div>
+        <div style="display: inline-block">            
+            @foreach (var item in Model.CostItems)
             {
-                <td>@Html.TextBox("Name", @Model.CostItems[i].Name, new {@class = "TextBoxMiddle"})</td>
-                <td>@Html.TextBox("Price", @Model.CostItems[i].Price.ToString(CultureInfo.InvariantCulture), new {@class = "TextBoxMiddle"})</td>
-                <td>@{ var temp = Model.CostItems[0].TagNames.Count > 0 ? Model.CostItems[0].TagNames[0] : ""; }@Html.TextBox("TagNames", @temp, new {@class = "TextBoxMiddle"})</td>
-                @Html.Hidden("id", Model.CostItems[i].Id)
-                <td><input type="submit" value="Update" /></td>
+                <div>
+                    @using (@Ajax.BeginForm("UpdateItem", "Wallet", FormMethod.Post, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = @id }))
+                    {
+                        <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Name", item.Name, new { @class = "TextBoxMiddle" })</div>
+                        <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Price", item.Price.ToString(CultureInfo.InvariantCulture), new { @class = "TextBoxMiddle" })</div>
+                        <div class="LabelBig" style="display: inline-block;">@{ var temp = item.TagNames.Count > 0 ? item.TagNames[0] : ""; }@Html.TextBox("TagNames", @temp, new { @class = "TextBoxMiddle" })</div>
+                        @Html.Hidden("Date", Model.Date)
+                        @Html.Hidden("id", item.Id)
+                        <div style="display: inline-block;"><input type="submit" value="Update" style="height: 20px; font-size: 1em; padding: 1px;"/></div>
+                        <div style="display: inline-block;">@Ajax.ActionLink("Delete", "DeleteItem", new { id = item.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = @id })</div>
+                    }
+                </div>
             }
-            @using (@Ajax.BeginForm("DeleteItem", "Wallet", FormMethod.Post, null))
-            {
-                @Html.Hidden("id", Model.CostItems[i].Id)
-                <td><input type="submit" value="Delete" /></td>
-            }
-        </tr>
-    }
-    <tr>
-        @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, null))
-        {
-            <td>@Html.TextBox("Name", "", new {@class = "TextBoxMiddle"})</td>
-            <td>@Html.TextBox("Price", "", new {@class = "TextBoxMiddle"})</td>
-            <td>@Html.TextBox("TagNames", "", new {@class = "TextBoxMiddle"})</td>
-            @Html.Hidden("Date", Model.Date)
-            <td><input type="submit" value="Add" /></td>
-            <td></td>
-        }
-    </tr>
-}
+            <div>
+                @using (@Ajax.BeginForm("AddItem", "Wallet", FormMethod.Post, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = @id }))
+                {
+                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Name", "", new { @class = "TextBoxMiddle" })</div>
+                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("Price", "", new { @class = "TextBoxMiddle" })</div>
+                    <div class="LabelBig" style="display: inline-block;">@Html.TextBox("TagNames", "", new { @class = "TextBoxMiddle" })</div>
+                    @Html.Hidden("Date", Model.Date)
+                    <div style="display: inline-block;"><input type="submit" value="Add" style="height: 20px; font-size: 1em; padding: 1px;"/></div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+             
 
 
-        
-
-
-
-        
-                  
     

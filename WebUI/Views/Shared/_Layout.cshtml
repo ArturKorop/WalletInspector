@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>Wallet Inspector - @ViewBag.Title</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
@@ -13,7 +13,7 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("Logo", "Index", "Home")</p>
+                    <p class="site-title">@Html.ActionLink("Wallet Inspector", "Index", "Home")</p>
                 </div>
                 <div class="float-right">
                     <section id="login">
@@ -23,9 +23,6 @@
                         @{
                             Html.RenderAction("Menu", "Navigation");
                         }
-                            <!--<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
                     </nav>
                 </div>
             </div>
