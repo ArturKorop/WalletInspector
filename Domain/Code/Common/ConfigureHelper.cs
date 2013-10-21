@@ -1,6 +1,7 @@
 ﻿using Domain.Code.Repository;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
+using WebMatrix.WebData;
 
 namespace Domain.Code.Common
 {
@@ -8,8 +9,9 @@ namespace Domain.Code.Common
     {
          public static void Configure()
          {
-             DIServiceLocator.Current.RegisterInstance<ITagRepository>(new MsSqlTagRepository());
-             DIServiceLocator.Current.RegisterInstance<IRepository>(new MsSqlRepository());
+             var userId = WebSecurity.IsAuthenticated ? WebSecurity.CurrentUserId : 0;
+             DIServiceLocator.Current.RegisterInstance<ITagRepository>(new MsSqlTagRepository(userId));
+             DIServiceLocator.Current.RegisterInstance<IRepository>(new MsSqlCostItemRepository(userId));
          }
     }
 }

@@ -11,16 +11,20 @@ namespace Domain.Code.General
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         public string Name { get; set; }
+
+        public int UserId { get; set; }
 
         public Tag()
         {
-            
+
         }
 
-        public Tag(string name)
+        public Tag(string name, int userId)
         {
             Name = name;
+            UserId = userId;
         }
     }
 }

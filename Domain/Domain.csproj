@@ -75,6 +75,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Common\ConfigureHelper.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="Code\Time\Year.cs" />
     <Compile Include="Code\General\CostItem.cs" />
     <Compile Include="Code\General\Tag.cs" />
-    <Compile Include="Code\Repository\MsSqlRepository.cs" />
+    <Compile Include="Code\Repository\MsSqlCostItemRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ITagRepository.cs" />
     <Compile Include="Interfaces\IWallet.cs" />

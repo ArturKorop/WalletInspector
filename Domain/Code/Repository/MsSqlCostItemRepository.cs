@@ -8,14 +8,15 @@ using EntityFramework.Extensions;
 
 namespace Domain.Code.Repository
 {
-    public class MsSqlRepository : IRepository
+    public class MsSqlCostItemRepository : IRepository
     {
         private readonly WalletInspectorContext _context;
         private int _userId;
 
-        public MsSqlRepository()
+        public MsSqlCostItemRepository(int userId)
         {
             _context = new WalletInspectorContext();
+            _userId = userId != -1 ? userId : 0; ;
         }
 
         public Year GetYear(int year)
@@ -52,11 +53,6 @@ namespace Domain.Code.Repository
         public CostItem GetItemById(int id)
         {
             return _context.CostItems.Single(x => x.Id == id && x.UserId == _userId);
-        }
-
-        public void SetUserId(int id)
-        {
-            _userId = id != -1 ? id : 0;
         }
 
         public int Add(CostItem item)

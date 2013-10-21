@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using Domain.Code.General;
-using Domain.Interfaces;
 
 namespace Domain.Code.DatabaseItems
 {

@@ -24,8 +24,8 @@ namespace WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-            ConfigureHelper.Configure();
             WebSecurity.InitializeDatabaseConnection("WalletInspectorContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+            ConfigureHelper.Configure();
         }
     }
 }

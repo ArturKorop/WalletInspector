@@ -16,9 +16,9 @@ namespace WebUI.Controllers
 
         public WalletController()
         {
+            ConfigureHelper.Configure();
             _repository = DIServiceLocator.Current.Resolve<IRepository>();
             _userId = WebSecurity.CurrentUserId;
-            _repository.SetUserId(_userId);
         }
 
         public ViewResult CurrentMonth()
