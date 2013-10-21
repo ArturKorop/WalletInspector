@@ -5,10 +5,8 @@ namespace WebUI.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {
-            ViewBag.Message = "";
-            
-            return View();
+        {            
+            return RedirectToAction("CurrentMonth", "Wallet");
         }
 
         public ActionResult About()
