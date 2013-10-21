@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Web.Mvc;
 using Domain.Code.Common;
 using Domain.Code.General;
+using Domain.Code.Time;
 using Domain.Interfaces;
 using Microsoft.Practices.Unity;
 using WebMatrix.WebData;
@@ -42,6 +43,16 @@ namespace WebUI.Controllers
             return GetMonth(date);
         }
 
+        public ViewResult PrevYear(int currentYear)
+        {
+            return Year(currentYear - 1);
+        }
+
+        public ViewResult NextYear(int currentYear)
+        {
+            return Year(currentYear + 1);
+        }
+
         [HttpPost]
         public ActionResult AddItem(CostItem item)
         {
@@ -74,7 +85,7 @@ namespace WebUI.Controllers
                 return temp2;
             }
 
-            var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
+            var temp = _repository.GetMonth(item.Date.Year, item.Date.Month);
             return RedirectToAction("CurrentMonth", temp);
         }
 
@@ -112,6 +123,13 @@ namespace WebUI.Controllers
             ViewBag.Title = CreateMonthTitleText(new DateTime(year, month, 1));
 
             return View("Month", _repository.GetMonth(year, month));
+        }
+
+        public ViewResult MonthTotalStatistic(DateTime currentMonth)
+        {
+            var month = _repository.GetMonth(currentMonth.Year, currentMonth.Month);
+
+            return View("MonthTotalStatistic", month);
         }
 
         private ViewResult GetMonth(DateTime date)

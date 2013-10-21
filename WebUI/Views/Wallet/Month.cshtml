@@ -1,13 +1,13 @@
 ﻿@using System.Globalization
 @model Domain.Code.Time.Month
 @section featured {
-    <div style="margin: 0 auto;text-align: center;">
+    <div style="margin: 0 auto; text-align: center;">
         <p style="display: inline-block">@Html.ActionLink(Model.ThisYear.ToString(CultureInfo.InvariantCulture), "Year", new {year = Model.ThisYear}, null)</p>
         <p style="display: inline-block">@Model.MonthNumber</p> 
         <p style="display: inline-block">@Model.Name</p>
         <div>
-            <div style="display: inline-block">@Html.ActionLink("Prev", "PrevMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})</div>
-            <div style="display: inline-block">@Html.ActionLink("Next", "NextMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})</div>
+            <div style="display: inline-block">@Html.ActionLink("<<<", "PrevMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})</div>
+            <div style="display: inline-block">@Html.ActionLink(">>>", "NextMonth", new {currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1)})</div>
         </div>
         <div id="TableMonth">
             <div id="TableMonthLeft">
@@ -40,6 +40,12 @@
                     Html.RenderPartial("Day", Model.Days[index]);
                 }
             </div>
+        </div>
+        <div>
+            Total cost: @Model.Statistic.GetMonthTotalSum()
+        </div>
+        <div>
+            @Html.ActionLink("Total statistic", "MonthTotalStatistic", new { currentMonth = new DateTime(@Model.ThisYear, @Model.MonthNumber, 1) })
         </div>
     </div>
 }

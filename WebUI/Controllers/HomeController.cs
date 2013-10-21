@@ -11,15 +11,11 @@ namespace WebUI.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Application for save information about you money";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Artur Korop contacts";
-
             return View();
         }
     }

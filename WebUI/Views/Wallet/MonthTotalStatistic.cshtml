@@ -1,0 +1,25 @@
+﻿@model Domain.Code.Time.Month
+
+@{
+    ViewBag.Title = "MonthTotalStatistic";
+}
+
+<table>
+    @foreach (var item in Model.Statistic.GetEachCostItemStatistic())
+    {
+        <tr>
+            <td>@item.Key</td>
+            <td>@item.Value</td>
+        </tr>
+    }
+</table>
+
+<table>
+    @foreach (var item in Model.Statistic.GetEachTagStatistic())
+    {
+        <tr>
+            <td>@item.Key</td>
+            <td>@item.Value</td>
+        </tr>
+    }
+</table>

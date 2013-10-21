@@ -20,29 +20,32 @@
     </script>
 }
 
-@section featured {
-    <div id="YearMain">
-        <div>@Model.Name</div>
-        <div id="MonthList">
-            @{ var monthNumber = 0; }
-            @for (int i = 0; i < 3; i++)
-            {<div id="GrouptMonthStat">
-                 @for (int j = 0; j < 4; j++)
-                 {
-                     monthNumber++;
-                     var monthDivId = "Month" + monthNumber;
-                     <div id="@monthDivId" style="display: inline-block;margin: 1em;padding: 0.5em" class="MonthStat">
-                         @{
-                             var currentMonth = Model.GetMonth(monthNumber);
-                         }
-                         @Html.Partial("MonthStatistic", currentMonth)
-                     </div>
-                 }
-             </div>
-            }
-        </div>
-        <div id="TotalYearSum">
-            Total: @Model.Statistic.GetYearTotalSum()
-        </div>
-    </div>
-}
+ <div id="YearMain">
+     <div id="Title">
+         <div style="display: inline-block">@Html.ActionLink("<<<", "PrevYear", new {currentYear = Model.Name})</div>
+         <div style="display: inline-block">@Model.Name</div>
+         <div style="display: inline-block">@Html.ActionLink(">>>", "NextYear", new {currentYear = Model.Name})</div>
+     </div>
+     <div id="MonthList">
+         @{ var monthNumber = 0; }
+         @for (int i = 0; i < 3; i++)
+         {<div id="GrouptMonthStat">
+              @for (int j = 0; j < 4; j++)
+              {
+                  monthNumber++;
+                  var monthDivId = "Month" + monthNumber;
+                  <div id="@monthDivId" style="display: inline-block;margin: 1em;padding: 0.5em" class="MonthStat">
+                      @{
+                          var currentMonth = Model.GetMonth(monthNumber);
+                      }
+                      @Html.Partial("MonthStatistic", currentMonth)
+                  </div>
+              }
+          </div>
+         }
+     </div>
+     <div id="TotalYearSum">
+         Total: @Model.Statistic.GetYearTotalSum()
+     </div>
+ </div>
+
