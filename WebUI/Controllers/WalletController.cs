@@ -70,7 +70,7 @@ namespace WebUI.Controllers
             }
 
             var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
-            return RedirectToAction("CurrentMonth", temp);
+            return View("Month", temp);
         }
 
         [HttpPost]
@@ -81,12 +81,11 @@ namespace WebUI.Controllers
             if (Request.IsAjaxRequest())
             {
                 var result = _repository.GetMonth(item.Date.Year, item.Date.Month).GetDay(item.Date.Day);
-                var temp2 = PartialView("Day", result);
-                return temp2;
+                return PartialView("Day", result);
             }
 
             var temp = _repository.GetMonth(item.Date.Year, item.Date.Month);
-            return RedirectToAction("CurrentMonth", temp);
+            return View("Month", temp);
         }
 
         public ActionResult DeleteItem(int id)
@@ -101,7 +100,7 @@ namespace WebUI.Controllers
             }
 
             var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
-            return RedirectToAction("CurrentMonth", temp);
+            return View("Month", temp);
         }
 
         public ViewResult CurrentYear()
