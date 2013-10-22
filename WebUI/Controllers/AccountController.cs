@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Domain.Code.Common;
 using Domain.Code.DatabaseItems;
+using Domain.Interfaces;
 using DotNetOpenAuth.AspNet;
+using Microsoft.Practices.Unity;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using WebUI.Filters;
@@ -23,9 +25,6 @@ namespace WebUI.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
-        //
-        // GET: /Account/Login
-
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {

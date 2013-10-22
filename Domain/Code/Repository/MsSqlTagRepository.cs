@@ -8,12 +8,16 @@ namespace Domain.Code.Repository
     public class MsSqlTagRepository : ITagRepository
     {
         private readonly WalletInspectorContext _context;
-        private readonly int _userId;
+        private int _userId;
 
-        public MsSqlTagRepository(int userId)
+        public MsSqlTagRepository()
         {
             _context = new WalletInspectorContext();
-            _userId = userId;
+        }
+
+        public void Configure(int userId)
+        {
+            _userId = userId != -1 ? userId : 0;
         }
 
         public string GetTagName(int id)

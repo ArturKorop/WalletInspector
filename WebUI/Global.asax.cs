@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Domain.Code.Common;
-using WebMatrix.WebData;
+using Domain.Interfaces;
+using Microsoft.Practices.Unity;
 
 namespace WebUI
 {
@@ -24,8 +21,12 @@ namespace WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-            WebSecurity.InitializeDatabaseConnection("WalletInspectorContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+
             ConfigureHelper.Configure();
+            var repository = DIServiceLocator.Current.Resolve<IRepository>();
+            repository.GetMonth(2010, 10);
         }
     }
+
+    
 }

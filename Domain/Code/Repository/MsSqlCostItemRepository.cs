@@ -13,10 +13,14 @@ namespace Domain.Code.Repository
         private readonly WalletInspectorContext _context;
         private int _userId;
 
-        public MsSqlCostItemRepository(int userId)
+        public MsSqlCostItemRepository()
         {
             _context = new WalletInspectorContext();
-            _userId = userId != -1 ? userId : 0; ;
+        }
+
+        public void Configure(int userId)
+        {
+            _userId = userId != -1 ? userId : 0;
         }
 
         public Year GetYear(int year)

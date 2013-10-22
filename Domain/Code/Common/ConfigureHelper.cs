@@ -9,9 +9,8 @@ namespace Domain.Code.Common
     {
          public static void Configure()
          {
-             var userId = WebSecurity.IsAuthenticated ? WebSecurity.CurrentUserId : 0;
-             DIServiceLocator.Current.RegisterInstance<ITagRepository>(new MsSqlTagRepository(userId));
-             DIServiceLocator.Current.RegisterInstance<IRepository>(new MsSqlCostItemRepository(userId));
+             DIServiceLocator.Current.RegisterInstance<ITagRepository>(new MsSqlTagRepository());
+             DIServiceLocator.Current.RegisterInstance<IRepository>(new MsSqlCostItemRepository());
          }
     }
 }

@@ -17,9 +17,10 @@ namespace WebUI.Controllers
 
         public WalletController()
         {
-            ConfigureHelper.Configure();
             _repository = DIServiceLocator.Current.Resolve<IRepository>();
-            _userId = WebSecurity.CurrentUserId;
+
+            _userId = WebSecurity.Initialized ? WebSecurity.CurrentUserId : 0;
+            _repository.Configure(_userId);
         }
 
         public ViewResult CurrentMonth()
@@ -52,8 +53,7 @@ namespace WebUI.Controllers
         {
             return Year(currentYear + 1);
         }
-
-        [HttpPost]
+        
         public ActionResult AddItem(CostItem item)
         {
             ModelState.Clear();
@@ -72,7 +72,7 @@ namespace WebUI.Controllers
             var temp = _repository.GetMonth(DateTime.Now.Year, DateTime.Now.Month);
             return View("Month", temp);
         }
-
+       
         [HttpPost]
         public ActionResult UpdateItem(CostItem item, int id)
         {
@@ -88,6 +88,7 @@ namespace WebUI.Controllers
             return View("Month", temp);
         }
 
+        [HttpPost]
         public ActionResult DeleteItem(int id)
         {
             var date = _repository.GetItemById(id).Date;
