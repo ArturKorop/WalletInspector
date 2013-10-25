@@ -30,7 +30,7 @@
                         @Html.Hidden("Date", Model.Date)
                         @Html.Hidden("id", item.Id)
                         <div style="display: inline-block;"><input type="submit" value="Update" style="height: 20px; font-size: 1em; padding: 1px;"/></div>
-                        <div style="display: inline-block;">@Ajax.ActionLink("Delete", "DeleteItem", new { id = item.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = @id })</div>
+                        <div style="display: inline-block;">@Ajax.ActionLink("Delete", "DeleteItem", new { id = item.Id }, new AjaxOptions {HttpMethod = "Post" ,InsertionMode = InsertionMode.Replace, UpdateTargetId = @id })</div>
                     }
                 </div>
             }
