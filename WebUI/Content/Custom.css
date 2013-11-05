@@ -17,12 +17,13 @@
 }
 
 .LabelBig {
-     width: 100px;
-     margin: 1px;
-     padding: 1px;
+    width: 100px;
+    margin: 1px;
+    padding: 1px;
 }
 /* End Labels */
 /* Divs */
+
 .MainDay {
     border-style: solid;
     border-width: 1px;
@@ -36,11 +37,9 @@
     text-align: left;
 }
 
-#TableMonth{
-}
+#TableMonth { }
 
-#TableMonthLeft 
-{
+#TableMonthLeft {
     padding-left: 100px;
     padding-right: 100px;
     display: inline-block;
@@ -63,19 +62,25 @@
     margin: 1em;
     padding: 0.5em
 }
-#YearMain {
-    text-align: center;
+
+#YearMain { text-align: center; }
+
+#Tags, #Items {
+    border-style: solid;
+    float: left;
+    margin: 5px;
+    padding: 5px;
 }
+
+#Tags p { font-style: italic;font-size: 22px; }
+
+#Items p { font-style: italic;font-size: 22px; }
 /* End Divs */
 /* TextBoxes */
-.TextBoxMiddle{
+
+.TextBoxMiddle {
     width: 100px;
     margin: 1px 0 0 1px;
     padding: 0;
 }
 /* End TextBoxes */
-
-     
-     
-     
-     

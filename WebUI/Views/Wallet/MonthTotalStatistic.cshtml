@@ -4,22 +4,28 @@
     ViewBag.Title = "MonthTotalStatistic";
 }
 
-<table>
-    @foreach (var item in Model.Statistic.GetEachCostItemStatistic())
-    {
-        <tr>
-            <td>@item.Key</td>
-            <td>@item.Value</td>
-        </tr>
-    }
-</table>
+<div id="Items">
+    <p>Items</p>
+    <table>
+        @foreach (var item in Model.Statistic.GetEachCostItemStatistic())
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td>@item.Value</td>
+            </tr>
+        }
+    </table>
+</div>
 
-<table>
-    @foreach (var item in Model.Statistic.GetEachTagStatistic())
-    {
-        <tr>
-            <td>@item.Key</td>
-            <td>@item.Value</td>
-        </tr>
-    }
-</table>
+<div id="Tags">
+    <p>Tags</p>
+    <table>
+        @foreach (var item in Model.Statistic.GetEachTagStatistic())
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td>@item.Value</td>
+            </tr>
+        }
+    </table>
+</div>
